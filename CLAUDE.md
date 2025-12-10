@@ -181,9 +181,75 @@ Reveal.initialize({
 - `RevealSearch` - Slide search (Ctrl+Shift+F)
 - `RevealMermaid` - Mermaid diagram support (installed via npm)
 
+## Animated Diagrams with HTML/CSS (Preferred)
+
+For diagrams that require step-by-step reveals or complex animations, use HTML/CSS boxes with fragments instead of Mermaid. This is the preferred method because:
+
+1. **Full animation control**: Each element can be revealed independently with `class="fragment"`
+2. **Auto-animate compatibility**: Elements with `data-id` can smoothly animate position/size across slides
+3. **Mermaid limitations**: Mermaid diagrams are rendered as SVG at runtime, which breaks auto-animate matching and prevents granular control over individual elements
+
+### Basic Pattern: Fragments for Sequential Reveal
+
+Use `r-vstack` or `r-hstack` with fragments for stack diagrams where elements appear one at a time in fixed positions:
+
+```html
+<section>
+  <h3>Architecture Stack</h3>
+  <div class="r-vstack" style="gap: 10px;">
+    <div class="fragment" style="background: #4a90d9; padding: 20px 60px; border-radius: 8px; color: white; font-weight: bold;">
+      Layer 1
+    </div>
+    <div class="fragment" style="font-size: 24px;">↓</div>
+    <div class="fragment" style="background: #2ecc71; padding: 20px 60px; border-radius: 8px; color: white; font-weight: bold;">
+      Layer 2
+    </div>
+    <div class="fragment" style="font-size: 24px;">↓</div>
+    <div class="fragment" style="background: #9b59b6; padding: 15px 40px; border-radius: 8px; color: white; font-weight: bold;">
+      Layer 3
+      <div style="background: #e74c3c; padding: 10px 30px; border-radius: 6px; margin-top: 10px;">
+        Nested Component
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+### Advanced Pattern: Auto-Animate for Position Changes
+
+If you need elements to smoothly move/resize between states, use multiple slides with `data-auto-animate` and matching `data-id` attributes. Note: This requires repeating the full slide structure for each state.
+
+```html
+<section data-auto-animate>
+  <h3 data-id="title">Stack</h3>
+  <div data-id="box1" style="background: #4a90d9; padding: 20px;">Layer 1</div>
+</section>
+<section data-auto-animate>
+  <h3 data-id="title">Stack</h3>
+  <div data-id="box1" style="background: #4a90d9; padding: 20px;">Layer 1</div>
+  <div data-id="box2" style="background: #2ecc71; padding: 20px;">Layer 2</div>
+</section>
+```
+
+### When to Use Each Approach
+
+| Approach | Use When |
+|----------|----------|
+| **Fragments** | Elements appear in fixed positions, no movement needed |
+| **Auto-animate** | Elements need to move, resize, or change properties smoothly |
+| **Mermaid** | Static diagrams with no animation, or standard diagram types (flowcharts, sequence diagrams) |
+
+### Choosing Colors
+
+Suggested palette for stack diagrams:
+- `#4a90d9` - Blue (top layer / client)
+- `#2ecc71` - Green (middle layer / framework)
+- `#9b59b6` - Purple (lower layer / runtime)
+- `#e74c3c` - Red (hardware / nested components)
+
 ## Mermaid Diagrams
 
-This project has `reveal.js-mermaid-plugin` installed for rendering diagrams. The plugin is configured in `index.html` with dark theme.
+This project has `reveal.js-mermaid-plugin` installed for rendering diagrams. Use Mermaid for static diagrams or when you need standard diagram types. For animated diagrams, see "Animated Diagrams with HTML/CSS" above.
 
 ### Basic Usage
 
