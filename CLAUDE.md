@@ -10,7 +10,7 @@ A reveal.js presentation. Edit `index.html` to create slides. Run `npm start` to
 
 **Important:** When editing slides, use the Playwright MCP tools to visually verify your changes:
 
-1. Ensure the dev server is running (`npm start`)
+1. Assume the dev server is running, but you can double check first by seeing what is running on localhost:8000, and if there's nothing, run `npm start`
 2. Use `mcp__playwright__browser_navigate` to open `http://localhost:8000`
 3. Use `mcp__playwright__browser_screenshot` to capture and inspect the current slide
 4. Use `mcp__playwright__browser_press_key` with "ArrowRight"/"ArrowLeft" to navigate between slides
@@ -179,3 +179,247 @@ Reveal.initialize({
 - `RevealMath.KaTeX` / `RevealMath.MathJax2` / `RevealMath.MathJax3` - LaTeX math
 - `RevealZoom` - Alt+click zoom
 - `RevealSearch` - Slide search (Ctrl+Shift+F)
+- `RevealMermaid` - Mermaid diagram support (installed via npm)
+
+## Mermaid Diagrams
+
+This project has `reveal.js-mermaid-plugin` installed for rendering diagrams. The plugin is configured in `index.html` with dark theme.
+
+### Basic Usage
+
+Wrap diagrams in `<div class="mermaid"><pre>...</pre></div>`:
+
+```html
+<section>
+  <h3>My Diagram</h3>
+  <div class="mermaid">
+    <pre>
+      flowchart TD
+        A[Start] --> B[End]
+    </pre>
+  </div>
+</section>
+```
+
+### Flowchart
+
+```
+flowchart TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Action 1]
+    B -->|No| D[Action 2]
+    C --> E[End]
+    D --> E
+```
+
+Direction options: `TD` (top-down), `TB` (top-bottom), `BT` (bottom-top), `LR` (left-right), `RL` (right-left)
+
+Node shapes:
+- `[text]` - Rectangle
+- `(text)` - Rounded rectangle
+- `([text])` - Stadium/pill shape
+- `[[text]]` - Subroutine
+- `[(text)]` - Cylinder (database)
+- `((text))` - Circle
+- `{text}` - Diamond (decision)
+- `{{text}}` - Hexagon
+- `[/text/]` - Parallelogram
+- `[\text\]` - Parallelogram alt
+- `[/text\]` - Trapezoid
+- `[\text/]` - Trapezoid alt
+
+Arrow types:
+- `-->` - Arrow
+- `---` - Line
+- `-.->` - Dotted arrow
+- `==>` - Thick arrow
+- `--text-->` - Arrow with label
+- `-->|text|` - Arrow with label (alt)
+
+### Sequence Diagram
+
+```
+sequenceDiagram
+    participant A as Alice
+    participant B as Bob
+    A->>B: Hello Bob
+    B-->>A: Hi Alice
+    A->>B: How are you?
+    B-->>A: Great!
+```
+
+Arrow types:
+- `->` - Solid line
+- `-->` - Dotted line
+- `->>` - Solid with arrowhead
+- `-->>` - Dotted with arrowhead
+- `-x` - Solid with cross
+- `--x` - Dotted with cross
+
+Features:
+- `Note right of A: Note text` - Add notes
+- `loop Loop text ... end` - Loops
+- `alt Condition ... else Other ... end` - Conditionals
+- `par Parallel 1 ... and Parallel 2 ... end` - Parallel execution
+- `activate A` / `deactivate A` - Activation boxes
+
+### Class Diagram
+
+```
+classDiagram
+    class Animal {
+        +String name
+        +int age
+        +makeSound()
+    }
+    class Dog {
+        +fetch()
+    }
+    Animal <|-- Dog
+```
+
+Relationships:
+- `<|--` - Inheritance
+- `*--` - Composition
+- `o--` - Aggregation
+- `-->` - Association
+- `..>` - Dependency
+- `..|>` - Realization
+
+Visibility:
+- `+` Public
+- `-` Private
+- `#` Protected
+- `~` Package/Internal
+
+### State Diagram
+
+```
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing: Start
+    Processing --> Complete: Done
+    Processing --> Error: Fail
+    Complete --> [*]
+    Error --> Idle: Reset
+```
+
+Features:
+- `[*]` - Start/end state
+- `state "Description" as s1` - State with description
+- `state fork_state <<fork>>` - Fork
+- `state join_state <<join>>` - Join
+- `note right of State: Note` - Notes
+
+### Entity Relationship Diagram
+
+```
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    PRODUCT ||--o{ LINE-ITEM : "is in"
+```
+
+Cardinality:
+- `||` - Exactly one
+- `o|` - Zero or one
+- `}|` - One or more
+- `o{` - Zero or more
+
+### Gantt Chart
+
+```
+gantt
+    title Project Schedule
+    dateFormat YYYY-MM-DD
+    section Planning
+    Research     :a1, 2024-01-01, 7d
+    Design       :a2, after a1, 5d
+    section Development
+    Implementation :a3, after a2, 14d
+    Testing      :a4, after a3, 7d
+```
+
+### Pie Chart
+
+```
+pie title Distribution
+    "Category A" : 40
+    "Category B" : 30
+    "Category C" : 20
+    "Category D" : 10
+```
+
+### Git Graph
+
+```
+gitGraph
+    commit
+    branch develop
+    checkout develop
+    commit
+    commit
+    checkout main
+    merge develop
+    commit
+```
+
+### Mind Map
+
+```
+mindmap
+    root((Central Topic))
+        Branch 1
+            Sub-topic 1
+            Sub-topic 2
+        Branch 2
+            Sub-topic 3
+        Branch 3
+```
+
+### Timeline
+
+```
+timeline
+    title Project Timeline
+    2024 : Planning phase
+         : Requirements gathering
+    2025 : Development
+         : Testing
+         : Launch
+```
+
+### Quadrant Chart
+
+```
+quadrantChart
+    title Prioritization Matrix
+    x-axis Low Effort --> High Effort
+    y-axis Low Impact --> High Impact
+    quadrant-1 Do First
+    quadrant-2 Schedule
+    quadrant-3 Delegate
+    quadrant-4 Eliminate
+    Task A: [0.8, 0.9]
+    Task B: [0.3, 0.7]
+    Task C: [0.6, 0.3]
+```
+
+### Theming
+
+Apply per-diagram themes using directives at the start:
+
+```
+%%{init: {'theme': 'dark'}}%%
+flowchart TD
+    A --> B
+```
+
+Available themes: `default`, `dark`, `forest`, `neutral`, `base`
+
+### Tips
+
+1. Keep diagrams simple - split complex diagrams across multiple slides
+2. Use `r-stretch` class on the mermaid div to fill available space
+3. Test diagrams at https://mermaid.live/ before adding to slides
+4. For custom styling, use `%%{init: {...}}%%` directives
