@@ -13,6 +13,12 @@
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<style>
+		.reveal .slide-number {
+			font-size: 24px;
+		}
+	</style>
 </head>
 
 <body>
@@ -28,41 +34,17 @@
 				</script>
 			</section>
 			<section>
-				<h3>LLM Application Stack</h3>
-				<div class="r-vstack" style="gap: 10px;">
-					<div class="fragment"
-						style="background: #4a90d9; padding: 20px 60px; border-radius: 8px; color: white; font-weight: bold;">
-						Client Application</div>
-					<div class="fragment" style="font-size: 24px;">↓</div>
-					<div class="fragment"
-						style="background: #2ecc71; padding: 20px 60px; border-radius: 8px; color: white; font-weight: bold;">
-						LangChain</div>
-					<div class="fragment" style="font-size: 24px;">↓</div>
-					<div class="fragment"
-						style="background: #9b59b6; padding: 15px 40px; border-radius: 8px; color: white; font-weight: bold; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-						<span>vLLM</span>
-						<div
-							style="background: #e74c3c; padding: 10px 30px; border-radius: 6px; color: white; font-size: 0.9em;">
-							GPU</div>
-					</div>
-				</div>
-			</section>
-			<section data-markdown>
-				<script type="text/template">
-					## Semantic-aware LLM-Application Scheduling
-
-					#### Otto White
-
-					#### December 10, 2025
-				</script>
-			</section>
-			<section>
-				<h3>Beam Search Online</h3>
-				<img src="assets/assets/plots/beam_search_online.png" class="r-stretch">
+				<h3>Beam Search: Throughput vs Latency (99th Percentile)</h3>
+				<img src="assets/data/presentation_figures_1_beam/plots/beam_search/throughput_vs_latency_99p.png"
+					class="r-stretch">
 			</section>
 			<section>
 				<h3>RAG: Efficiency vs Latency (99th Percentile)</h3>
 				<img src="assets/plots/simple_rag_efficiency_vs_latency_99p.png" class="r-stretch">
+			</section>
+			<section>
+				<h3>RAG: Queue Depth vs Efficiency</h3>
+				<img src="assets/data/max-throughput/plots/simple_rag/queue_depth_vs_efficiency.png" class="r-stretch">
 			</section>
 		</div>
 	</div>
@@ -78,6 +60,8 @@
 		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,
+			slideNumber: true,
+			controls: false,
 
 			// Mermaid diagram configuration
 			mermaid: {
