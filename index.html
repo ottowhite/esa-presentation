@@ -27,6 +27,35 @@
 					#### December 10, 2025
 				</script>
 			</section>
+			<section>
+				<h3>LLM Application Stack</h3>
+				<div class="r-vstack" style="gap: 10px;">
+					<div class="fragment"
+						style="background: #4a90d9; padding: 20px 60px; border-radius: 8px; color: white; font-weight: bold;">
+						Client Application</div>
+					<div class="fragment" style="font-size: 24px;">↓</div>
+					<div class="fragment"
+						style="background: #2ecc71; padding: 20px 60px; border-radius: 8px; color: white; font-weight: bold;">
+						LangChain</div>
+					<div class="fragment" style="font-size: 24px;">↓</div>
+					<div class="fragment"
+						style="background: #9b59b6; padding: 15px 40px; border-radius: 8px; color: white; font-weight: bold; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+						<span>vLLM</span>
+						<div
+							style="background: #e74c3c; padding: 10px 30px; border-radius: 6px; color: white; font-size: 0.9em;">
+							GPU</div>
+					</div>
+				</div>
+			</section>
+			<section data-markdown>
+				<script type="text/template">
+					## Semantic-aware LLM-Application Scheduling
+
+					#### Otto White
+
+					#### December 10, 2025
+				</script>
+			</section>
 		</div>
 	</div>
 
@@ -34,6 +63,7 @@
 	<script src="plugin/notes/notes.js"></script>
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
+	<script src="node_modules/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js"></script>
 	<script>
 		// More info about initialization & config:
 		// - https://revealjs.com/initialization/
@@ -41,8 +71,13 @@
 		Reveal.initialize({
 			hash: true,
 
+			// Mermaid diagram configuration
+			mermaid: {
+				theme: 'default'
+			},
+
 			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid]
 		});
 	</script>
 </body>
