@@ -6,6 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A reveal.js presentation. Edit `index.html` to create slides. Run `npm start` to preview with live reload on port 8000.
 
+## Previewing Your Work
+
+**Important:** When editing slides, use the Playwright MCP tools to visually verify your changes:
+
+1. Ensure the dev server is running (`npm start`)
+2. Use `mcp__playwright__browser_navigate` to open `http://localhost:8000`
+3. Use `mcp__playwright__browser_screenshot` to capture and inspect the current slide
+4. Use `mcp__playwright__browser_press_key` with "ArrowRight"/"ArrowLeft" to navigate between slides
+
+Always preview slides after making changes to verify layout, styling, and content appear correctly.
+
 ## Slide Structure
 
 ```html
