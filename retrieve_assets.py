@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Retrieve assets from local or remote sources into the assets folder.
+Retrieve assets from local or remote sources.
 
 Usage:
     python retrieve_assets.py <config.json>
 
 The JSON config file should contain a list of file entries with:
     - source: source path (required)
-    - destination: destination path within assets folder (required)
+    - destination: full destination path (required)
     - remote_host: hostname for SCP (optional)
     - remote_user: username for SCP (optional)
 """
@@ -99,7 +99,6 @@ def main():
         print()
 
     # Process each entry
-    assets_dir = Path("assets")
     success_count = 0
     fail_count = 0
 
@@ -114,7 +113,7 @@ def main():
             fail_count += 1
             continue
 
-        dest_path = assets_dir / destination
+        dest_path = Path(destination)
 
         if remote_host and remote_user:
             print(f"Copying (remote): {remote_user}@{remote_host}:{source} -> {dest_path}")
