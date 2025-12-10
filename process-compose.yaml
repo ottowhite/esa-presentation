@@ -1,0 +1,3 @@
+processes:
+  reveal-server:
+    command: cd dependencies/reveal.js && npm start
