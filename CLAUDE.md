@@ -31,6 +31,27 @@ Always preview slides after making changes to verify layout, styling, and conten
 </div>
 ```
 
+## Images
+
+Place image files in the `assets/` folder and reference them with relative paths:
+
+```html
+<!-- Basic image -->
+<img src="assets/image.png">
+
+<!-- Image that stretches to fill available slide height -->
+<img src="assets/image.png" class="r-stretch">
+
+<!-- Image with explicit dimensions -->
+<img src="assets/image.png" width="450" height="300">
+
+<!-- Stacked images that appear sequentially -->
+<div class="r-stack">
+  <img src="assets/image1.png" width="450" height="300" class="fragment">
+  <img src="assets/image2.png" width="450" height="300" class="fragment">
+</div>
+```
+
 ## Fragments (Step-by-Step Reveals)
 
 ```html
