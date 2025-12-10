@@ -1,0 +1,8 @@
+[
+  {
+    "source": "/home/ow20/code/efficient-agents/data/sweep/plots/beam_search/beam_search_throughput_vs_latency_50p.png",
+    "destination": "assets/plots/beam_search_online.png",
+    "remote_host": "komodo01",
+    "remote_user": "ow20"
+  }
+]
