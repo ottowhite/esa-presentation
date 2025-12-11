@@ -34,27 +34,29 @@
 				</script>
 			</section>
 			<!-- External slides -->
-			<section id="introduction-placeholder"></section>
-			<section id="llm-applications-placeholder"></section>
-			<section id="easy-hard-placeholder"></section>
-			<section id="rag-pipeline-placeholder"></section>
-			<section id="layered-architecture-placeholder"></section>
-			<section id="related-work-placeholder"></section>
-			<section id="gpu-cluster-deployment-placeholder"></section>
-			<section id="gpu-cluster-colocation-placeholder"></section>
+			<section id="introduction-slide"></section>
+			<section id="llm-applications-slide"></section>
+			<section id="rag-pipeline-slide"></section>
+			<section id="easy-hard-slide"></section>
+			<section id="layered-architecture-slide"></section>
+			<section id="related-work-slide"></section>
 			<!-- Simple image slides -->
 			<section>
-				<h3>Beam Search: Throughput vs Latency (99th Percentile)</h3>
-				<img src="assets/data/presentation_figures_1_beam/plots/beam_search/throughput_vs_latency_99p.png"
+				<h3>Critical-path Aware Parallelism</h3>
+				<img src="assets/data/plots/1_rag_time_distributions.png" class="r-stretch">
+			</section>
+
+			<section>
+				<h3>Critical-path Aware Parallelism</h3>
+				<img src="assets/data/rag_parallelism_online_serving/plots/simple_rag/throughput_vs_latency_95p.png"
 					class="r-stretch">
 			</section>
+			<section id="gpu-cluster-deployment-slide"></section>
+			<section id="gpu-cluster-colocation-slide"></section>
 			<section>
-				<h3>RAG: Efficiency vs Latency (99th Percentile)</h3>
-				<img src="assets/plots/simple_rag_efficiency_vs_latency_99p.png" class="r-stretch">
-			</section>
-			<section>
-				<h3>RAG: Queue Depth vs Efficiency</h3>
-				<img src="assets/data/max-throughput/plots/simple_rag/queue_depth_vs_efficiency.png" class="r-stretch">
+				<h3>Critical-path Aware Co-location</h3>
+				<img src="assets/data/rag_colocation_online_serving/plots/simple_rag/throughput_vs_latency_95p.png"
+					class="r-stretch">
 			</section>
 		</div>
 	</div>
@@ -67,14 +69,14 @@
 	<script>
 		// External slides to load (in order)
 		const externalSlides = [
-			{ id: 'introduction-placeholder', file: 'slides/introduction.html' },
-			{ id: 'llm-applications-placeholder', file: 'slides/llm-applications.html' },
-			{ id: 'easy-hard-placeholder', file: 'slides/easy-hard.html' },
-			{ id: 'rag-pipeline-placeholder', file: 'slides/rag-pipeline.html' },
-			{ id: 'layered-architecture-placeholder', file: 'slides/layered-architecture.html' },
-			{ id: 'related-work-placeholder', file: 'slides/related-work.html' },
-			{ id: 'gpu-cluster-deployment-placeholder', file: 'slides/gpu-cluster-deployment.html' },
-			{ id: 'gpu-cluster-colocation-placeholder', file: 'slides/gpu-cluster-colocation.html' }
+			{ id: 'introduction-slide', file: 'slides/introduction.html' },
+			{ id: 'llm-applications-slide', file: 'slides/llm-applications.html' },
+			{ id: 'easy-hard-slide', file: 'slides/easy-hard.html' },
+			{ id: 'rag-pipeline-slide', file: 'slides/rag-pipeline.html' },
+			{ id: 'layered-architecture-slide', file: 'slides/layered-architecture.html' },
+			{ id: 'related-work-slide', file: 'slides/related-work.html' },
+			{ id: 'gpu-cluster-deployment-slide', file: 'slides/gpu-cluster-deployment.html' },
+			{ id: 'gpu-cluster-colocation-slide', file: 'slides/gpu-cluster-colocation.html' }
 		];
 
 		// Load all external slides then initialize Reveal

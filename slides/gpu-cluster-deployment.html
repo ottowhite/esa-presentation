@@ -1,28 +1,37 @@
 <section>
-	<h3>GPU Cluster</h3>
+	<h3>Critical-path Aware Co-location</h3>
 	<div style="display: flex; align-items: center; justify-content: center; gap: 60px; margin: 50px auto;">
 		<!-- Bullet points on the left -->
 		<div style="width: 300px; text-align: left;">
 			<ul style="list-style-type: disc; font-size: 24px; margin: 0; padding-left: 25px;">
-				<li class="fragment" data-fragment-index="0" style="margin-bottom: 20px;">How should we deploy this application?</li>
+				<li class="fragment" data-fragment-index="0" style="margin-bottom: 20px;">How should we deploy this
+					application?</li>
 				<li class="fragment" data-fragment-index="2" style="margin-bottom: 20px;">Severe underutilization</li>
 			</ul>
 		</div>
 		<!-- GPU diagram on the right -->
 		<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 500px; height: 220px;">
 			<!-- GPU 0 (left) -->
-			<div style="background: #f0f0f0; border: 3px solid #666; border-radius: 12px; padding: 20px; position: relative;">
-				<div style="position: absolute; top: 10px; left: 15px; font-weight: bold; color: #666; font-size: 16px;">GPU 0</div>
+			<div
+				style="background: #f0f0f0; border: 3px solid #666; border-radius: 12px; padding: 20px; position: relative;">
+				<div
+					style="position: absolute; top: 10px; left: 15px; font-weight: bold; color: #666; font-size: 16px;">
+					GPU 0</div>
 				<!-- LLM model inside GPU 0 -->
-				<div class="fragment" data-fragment-index="1" style="background: #e74c3c; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+				<div class="fragment" data-fragment-index="1"
+					style="background: #e74c3c; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 					LLM
 				</div>
 			</div>
 			<!-- GPU 1 (right) -->
-			<div style="background: #f0f0f0; border: 3px solid #666; border-radius: 12px; padding: 20px; position: relative;">
-				<div style="position: absolute; top: 10px; left: 15px; font-weight: bold; color: #666; font-size: 16px;">GPU 1</div>
+			<div
+				style="background: #f0f0f0; border: 3px solid #666; border-radius: 12px; padding: 20px; position: relative;">
+				<div
+					style="position: absolute; top: 10px; left: 15px; font-weight: bold; color: #666; font-size: 16px;">
+					GPU 1</div>
 				<!-- PRM model inside GPU 1 -->
-				<div class="fragment" data-fragment-index="1" style="background: #3498db; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+				<div class="fragment" data-fragment-index="1"
+					style="background: #3498db; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 					PRM
 				</div>
 			</div>
