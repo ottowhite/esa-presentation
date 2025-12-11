@@ -33,134 +33,12 @@
 					#### December 10, 2025
 				</script>
 			</section>
-			<section>
-				<h3>RAG Pipeline</h3>
-				<div style="position: relative; width: 1000px; height: 500px; margin: 10px auto;">
-					<!-- User icon - visible immediately -->
-					<div style="position: absolute; left: 20px; top: 200px;">
-						<svg width="80" height="80" viewBox="0 0 24 24" fill="#666">
-							<circle cx="12" cy="8" r="4"/>
-							<path d="M12 14c-6 0-8 3-8 6v1h16v-1c0-3-2-6-8-6z"/>
-						</svg>
-					</div>
-
-					<!-- Retrieval Path (top) -->
-					<!-- Arrow from User to Embedding Model with "prompt" label -->
-					<svg class="fragment" data-fragment-index="0" style="position: absolute; left: 100px; top: 140px; width: 120px; height: 100px;">
-						<defs><marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-						<line x1="10" y1="90" x2="100" y2="20" stroke="#666" stroke-width="2" marker-end="url(#arrow1)"/>
-						<text x="30" y="45" fill="#666" font-size="14" font-weight="bold">prompt</text>
-					</svg>
-
-					<!-- Embedding Model -->
-					<div class="fragment" data-fragment-index="0" style="position: absolute; left: 210px; top: 30px; background: #9b59b6; padding: 20px 28px; border-radius: 12px; color: white; font-weight: bold; font-size: 22px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-						Embedding<br>Model
-					</div>
-
-					<!-- Arrow from Embedding to Database with "embedding" label -->
-					<svg class="fragment" data-fragment-index="1" style="position: absolute; left: 370px; top: 50px; width: 130px; height: 50px;">
-						<defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-						<line x1="5" y1="25" x2="115" y2="25" stroke="#666" stroke-width="2" marker-end="url(#arrow2)"/>
-						<text x="25" y="18" fill="#666" font-size="14" font-weight="bold">embedding</text>
-					</svg>
-
-					<!-- Vector Database (cylinder symbol with label) -->
-					<div class="fragment" data-fragment-index="1" style="position: absolute; left: 490px; top: 5px; text-align: center;">
-						<svg width="120" height="110" viewBox="0 0 70 70">
-							<!-- Cylinder body -->
-							<ellipse cx="35" cy="15" rx="25" ry="10" fill="#e67e22"/>
-							<rect x="10" y="15" width="50" height="40" fill="#e67e22"/>
-							<ellipse cx="35" cy="55" rx="25" ry="10" fill="#d35400"/>
-							<!-- Top highlight -->
-							<ellipse cx="35" cy="15" rx="25" ry="10" fill="none" stroke="#fff" stroke-width="1" opacity="0.3"/>
-						</svg>
-						<div style="font-size: 18px; color: #666; margin-top: 2px;">Vector Database</div>
-					</div>
-
-					<!-- Arrow from Database to LLM with "retrieved documents" label -->
-					<svg class="fragment" data-fragment-index="2" style="position: absolute; left: 600px; top: 80px; width: 200px; height: 160px;">
-						<defs><marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-						<line x1="10" y1="10" x2="180" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow3)"/>
-						<text x="70" y="50" fill="#666" font-size="14" font-weight="bold">retrieved</text>
-						<text x="70" y="67" fill="#666" font-size="14" font-weight="bold">documents</text>
-					</svg>
-
-					<!-- LLM -->
-					<div class="fragment" data-fragment-index="2" style="position: absolute; left: 770px; top: 195px; background: #e74c3c; padding: 28px 45px; border-radius: 12px; color: white; font-weight: bold; font-size: 26px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-						LLM
-					</div>
-
-					<!-- Direct Path (bottom) - Arrow from User directly to LLM with "prompt" label -->
-					<svg class="fragment" data-fragment-index="3" style="position: absolute; left: 100px; top: 245px; width: 670px; height: 50px;">
-						<defs><marker id="arrow5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-						<line x1="10" y1="25" x2="650" y2="25" stroke="#666" stroke-width="2" marker-end="url(#arrow5)"/>
-						<text x="310" y="18" fill="#666" font-size="14" font-weight="bold">prompt</text>
-					</svg>
-
-					<!-- Arrow from LLM to Response with "response" label -->
-					<svg class="fragment" data-fragment-index="4" style="position: absolute; left: 905px; top: 220px; width: 100px; height: 50px;">
-						<defs><marker id="arrow6" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-						<line x1="5" y1="25" x2="85" y2="25" stroke="#666" stroke-width="2" marker-end="url(#arrow6)"/>
-						<text x="20" y="18" fill="#666" font-size="14" font-weight="bold">response</text>
-					</svg>
-				</div>
-			</section>
-			<section>
-				<h3>GPU Cluster</h3>
-				<div style="display: flex; align-items: center; justify-content: center; gap: 60px; margin: 50px auto;">
-					<!-- Bullet points on the left -->
-					<div style="width: 300px; text-align: left;">
-						<ul style="list-style-type: disc; font-size: 24px; margin: 0; padding-left: 25px;">
-							<li class="fragment" data-fragment-index="0" style="margin-bottom: 20px;">How should we deploy this application?</li>
-							<li class="fragment" data-fragment-index="2" style="margin-bottom: 20px;">Severe underutilization</li>
-						</ul>
-					</div>
-					<!-- GPU diagram on the right -->
-					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 500px; height: 220px;">
-						<!-- GPU 0 (left) -->
-						<div style="background: #f0f0f0; border: 3px solid #666; border-radius: 12px; padding: 20px; position: relative;">
-							<div style="position: absolute; top: 10px; left: 15px; font-weight: bold; color: #666; font-size: 16px;">GPU 0</div>
-							<!-- LLM model inside GPU 0 -->
-							<div class="fragment" data-fragment-index="1" style="background: #e74c3c; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-								LLM
-							</div>
-						</div>
-						<!-- GPU 1 (right) -->
-						<div style="background: #f0f0f0; border: 3px solid #666; border-radius: 12px; padding: 20px; position: relative;">
-							<div style="position: absolute; top: 10px; left: 15px; font-weight: bold; color: #666; font-size: 16px;">GPU 1</div>
-							<!-- PRM model inside GPU 1 -->
-							<div class="fragment" data-fragment-index="1" style="background: #3498db; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-								PRM
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section>
-				<h3>GPU Cluster</h3>
-				<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 700px; height: 250px; margin: 80px auto;">
-					<!-- GPU 0 (left) -->
-					<div style="background: #f0f0f0; border: 3px solid #666; border-radius: 12px; padding: 20px; position: relative;">
-						<div style="position: absolute; top: 10px; left: 15px; font-weight: bold; color: #666; font-size: 16px;">GPU 0</div>
-						<!-- LLM model inside GPU 0 -->
-						<div style="background: #e74c3c; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-							LLM
-						</div>
-					</div>
-					<!-- GPU 1 (right) -->
-					<div style="background: #f0f0f0; border: 3px solid #666; border-radius: 12px; padding: 20px; position: relative;">
-						<div style="position: absolute; top: 10px; left: 15px; font-weight: bold; color: #666; font-size: 16px;">GPU 1</div>
-						<!-- PRM model inside GPU 1 -->
-						<div style="background: #3498db; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-							PRM
-						</div>
-						<!-- LLM model inside GPU 1 (appears on animation) -->
-						<div class="fragment" data-fragment-index="0" style="background: #e74c3c; padding: 20px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; text-align: center; margin-top: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-							LLM
-						</div>
-					</div>
-				</div>
-			</section>
+			<!-- External slides -->
+			<section id="rag-pipeline-placeholder"></section>
+			<section id="layered-architecture-placeholder"></section>
+			<section id="gpu-cluster-deployment-placeholder"></section>
+			<section id="gpu-cluster-colocation-placeholder"></section>
+			<!-- Simple image slides -->
 			<section>
 				<h3>Beam Search: Throughput vs Latency (99th Percentile)</h3>
 				<img src="assets/data/presentation_figures_1_beam/plots/beam_search/throughput_vs_latency_99p.png"
@@ -183,21 +61,42 @@
 	<script src="plugin/highlight/highlight.js"></script>
 	<script src="node_modules/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js"></script>
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
-		Reveal.initialize({
-			hash: true,
-			slideNumber: true,
-			controls: false,
+		// External slides to load (in order)
+		const externalSlides = [
+			{ id: 'rag-pipeline-placeholder', file: 'slides/rag-pipeline.html' },
+			{ id: 'layered-architecture-placeholder', file: 'slides/layered-architecture.html' },
+			{ id: 'gpu-cluster-deployment-placeholder', file: 'slides/gpu-cluster-deployment.html' },
+			{ id: 'gpu-cluster-colocation-placeholder', file: 'slides/gpu-cluster-colocation.html' }
+		];
 
-			// Mermaid diagram configuration
-			mermaid: {
-				theme: 'default'
-			},
+		// Load all external slides then initialize Reveal
+		Promise.all(
+			externalSlides.map(slide =>
+				fetch(slide.file)
+					.then(response => response.text())
+					.then(html => ({ id: slide.id, html }))
+			)
+		).then(results => {
+			// Replace each placeholder with loaded content
+			results.forEach(({ id, html }) => {
+				const placeholder = document.getElementById(id);
+				placeholder.outerHTML = html;
+			});
 
-			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid]
+			// Initialize Reveal.js after all content is loaded
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				controls: false,
+
+				// Mermaid diagram configuration
+				mermaid: {
+					theme: 'default'
+				},
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid]
+			});
 		});
 	</script>
 </body>

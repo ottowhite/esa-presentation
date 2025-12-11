@@ -1,0 +1,182 @@
+<section>
+	<h3>Layered Architecture</h3>
+	<div style="position: relative; width: 1000px; height: 580px; margin: 0 auto;">
+		<!-- Users on left side (always visible) -->
+		<div style="position: absolute; left: 0px; top: 180px; text-align: center;">
+			<svg width="100" height="130" viewBox="0 0 70 100">
+				<!-- User 1 (front) -->
+				<circle cx="35" cy="25" r="12" fill="#555"/>
+				<path d="M35 40c-18 0-24 9-24 18v3h48v-3c0-9-6-18-24-18z" fill="#555"/>
+				<!-- User 2 (back left) -->
+				<circle cx="18" cy="18" r="9" fill="#888"/>
+				<path d="M18 30c-12 0-16 6-16 12v2h32v-2c0-6-4-12-16-12z" fill="#888"/>
+				<!-- User 3 (back right) -->
+				<circle cx="52" cy="18" r="9" fill="#888"/>
+				<path d="M52 30c-12 0-16 6-16 12v2h32v-2c0-6-4-12-16-12z" fill="#888"/>
+			</svg>
+			<div style="font-size: 18px; color: #555; font-weight: bold;">Users</div>
+		</div>
+
+		<!-- Swearing speech bubble - fragment 11 -->
+		<div class="fragment" data-fragment-index="11" style="position: absolute; left: 15px; top: 100px;">
+			<svg width="80" height="60" viewBox="0 0 70 50">
+				<path d="M5 5 Q5 0 15 0 L55 0 Q65 0 65 10 L65 30 Q65 40 55 40 L25 40 L15 50 L18 40 L15 40 Q5 40 5 30 Z" fill="white" stroke="#e74c3c" stroke-width="2"/>
+			</svg>
+			<div style="position: absolute; top: 10px; left: 15px; font-size: 18px; font-weight: bold; color: #e74c3c;">F*#!</div>
+		</div>
+
+		<!-- K8S Layer (top) - fragment 3 -->
+		<div class="fragment" data-fragment-index="3" style="position: absolute; left: 130px; top: 0px; width: 850px; height: 50px; background: #3498db; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+			<span style="color: white; font-weight: bold; font-size: 28px;">K8S</span>
+		</div>
+
+		<!-- Annotation for K8S - fragment 13 -->
+		<div class="fragment" data-fragment-index="13" style="position: absolute; left: 700px; top: -55px; width: 280px;">
+			<div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 10px; font-size: 14px; color: #856404;">
+				Monitoring and scaling replicas, not workflows
+			</div>
+			<svg style="position: absolute; left: 50px; top: 48px;" width="30" height="30">
+				<path d="M15 0 L15 25 L10 20 M15 25 L20 20" stroke="#ffc107" stroke-width="2" fill="none"/>
+			</svg>
+		</div>
+
+		<!-- Node 1 (left) - fragment 2 -->
+		<div class="fragment" data-fragment-index="2" style="position: absolute; left: 130px; top: 65px; width: 410px; height: 340px; border: 3px dashed #666; border-radius: 12px; background: rgba(240,240,240,0.3);">
+			<span style="position: absolute; left: 15px; top: 8px; font-size: 18px; color: #555; font-weight: bold;">Node 1</span>
+
+			<!-- CPU with RAG Application - fragment 1 (but inside node) -->
+			<div class="fragment" data-fragment-index="1" style="position: absolute; left: 15px; top: 40px; width: 380px; height: 80px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+				<span style="position: absolute; left: 10px; top: 5px; font-size: 14px; color: #7f8c8d;">CPU</span>
+				<div style="background: #2ecc71; padding: 15px 40px; border-radius: 8px; color: white; font-weight: bold; font-size: 22px;">
+					RAG
+				</div>
+			</div>
+
+			<!-- GPU 0 with Embedding Model -->
+			<div style="position: absolute; left: 15px; top: 135px; width: 180px; height: 190px; background: #2c3e50; border-radius: 10px; display: flex; flex-direction: column; align-items: center; padding-top: 10px;">
+				<span style="color: #ecf0f1; font-weight: bold; font-size: 18px;">GPU 0</span>
+				<!-- Embedding Model on GPU - fragment 4 -->
+				<div class="fragment" data-fragment-index="4" style="background: #e67e22; padding: 18px 22px; border-radius: 8px; color: white; font-weight: bold; font-size: 16px; text-align: center; margin-top: 20px;">
+					Embedding<br>Model
+				</div>
+				<div style="display: flex; gap: 8px; margin-top: auto; margin-bottom: 15px;">
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+				</div>
+			</div>
+
+			<!-- GPU 1 with Generation LLM -->
+			<div style="position: absolute; left: 210px; top: 135px; width: 180px; height: 190px; background: #2c3e50; border-radius: 10px; display: flex; flex-direction: column; align-items: center; padding-top: 10px;">
+				<span style="color: #ecf0f1; font-weight: bold; font-size: 18px;">GPU 1</span>
+				<!-- Generation LLM on GPU - fragment 4 -->
+				<div class="fragment" data-fragment-index="4" style="background: #e74c3c; padding: 18px 22px; border-radius: 8px; color: white; font-weight: bold; font-size: 16px; text-align: center; margin-top: 20px;">
+					Generation<br>LLM
+				</div>
+				<div style="display: flex; gap: 8px; margin-top: auto; margin-bottom: 15px;">
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Node 2 (right) - fragment 2 -->
+		<div class="fragment" data-fragment-index="2" style="position: absolute; left: 570px; top: 65px; width: 410px; height: 340px; border: 3px dashed #666; border-radius: 12px; background: rgba(240,240,240,0.3);">
+			<span style="position: absolute; left: 15px; top: 8px; font-size: 18px; color: #555; font-weight: bold;">Node 2</span>
+
+			<!-- CPU with Coding Agent Application - fragment 1 -->
+			<div class="fragment" data-fragment-index="1" style="position: absolute; left: 15px; top: 40px; width: 380px; height: 80px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+				<span style="position: absolute; left: 10px; top: 5px; font-size: 14px; color: #7f8c8d;">CPU</span>
+				<div style="background: #9b59b6; padding: 15px 25px; border-radius: 8px; color: white; font-weight: bold; font-size: 22px;">
+					Coding Agent
+				</div>
+			</div>
+
+			<!-- GPU 2 with Large LLM -->
+			<div style="position: absolute; left: 15px; top: 135px; width: 180px; height: 190px; background: #2c3e50; border-radius: 10px; display: flex; flex-direction: column; align-items: center; padding-top: 10px;">
+				<span style="color: #ecf0f1; font-weight: bold; font-size: 18px;">GPU 2</span>
+				<!-- Large LLM on GPU - fragment 4 -->
+				<div class="fragment" data-fragment-index="4" style="background: #8e44ad; padding: 18px 28px; border-radius: 8px; color: white; font-weight: bold; font-size: 16px; text-align: center; margin-top: 20px;">
+					Large<br>LLM
+				</div>
+				<div style="display: flex; gap: 8px; margin-top: auto; margin-bottom: 15px;">
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+				</div>
+			</div>
+
+			<!-- GPU 3 (empty) -->
+			<div style="position: absolute; left: 210px; top: 135px; width: 180px; height: 190px; background: #2c3e50; border-radius: 10px; display: flex; flex-direction: column; align-items: center; padding-top: 10px;">
+				<span style="color: #ecf0f1; font-weight: bold; font-size: 18px;">GPU 3</span>
+				<div style="display: flex; gap: 8px; margin-top: auto; margin-bottom: 15px;">
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+					<div style="width: 25px; height: 25px; background: #27ae60; border-radius: 4px;"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Annotation for LLM Engines - fragment 12 -->
+		<div class="fragment" data-fragment-index="12" style="position: absolute; left: 300px; top: 420px; width: 350px;">
+			<div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 12px; font-size: 14px; color: #856404; text-align: center;">
+				Optimizing for single requests, not workflows.<br>Not aware of each other.
+			</div>
+			<svg style="position: absolute; left: -30px; top: 10px;" width="40" height="30">
+				<path d="M35 15 L5 15 L12 10 M5 15 L12 20" stroke="#ffc107" stroke-width="2" fill="none"/>
+			</svg>
+			<svg style="position: absolute; right: -30px; top: 10px;" width="40" height="30">
+				<path d="M5 15 L35 15 L28 10 M35 15 L28 20" stroke="#ffc107" stroke-width="2" fill="none"/>
+			</svg>
+		</div>
+
+		<!-- Arrow: User to RAG - fragment 5 -->
+		<svg class="fragment" data-fragment-index="5" style="position: absolute; left: 85px; top: 130px; width: 80px; height: 50px; overflow: visible;">
+			<defs><marker id="arrowReq1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2ecc71"/></marker></defs>
+			<line x1="0" y1="40" x2="65" y2="15" stroke="#2ecc71" stroke-width="3" marker-end="url(#arrowReq1)"/>
+			<text x="5" y="55" fill="#2ecc71" font-size="12" font-weight="bold">request</text>
+		</svg>
+
+		<!-- Arrow: RAG to Embedding Model - fragment 6 -->
+		<svg class="fragment" data-fragment-index="6" style="position: absolute; left: 210px; top: 145px; width: 40px; height: 90px; overflow: visible;">
+			<defs><marker id="arrowReq2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#e67e22"/></marker></defs>
+			<line x1="20" y1="5" x2="20" y2="75" stroke="#e67e22" stroke-width="3" marker-end="url(#arrowReq2)"/>
+		</svg>
+
+		<!-- Arrow: Embedding Model to RAG (response) - fragment 7 -->
+		<svg class="fragment" data-fragment-index="7" style="position: absolute; left: 245px; top: 145px; width: 40px; height: 90px; overflow: visible;">
+			<defs><marker id="arrowResp1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#e67e22"/></marker></defs>
+			<line x1="20" y1="75" x2="20" y2="5" stroke="#e67e22" stroke-width="3" stroke-dasharray="5,3" marker-end="url(#arrowResp1)"/>
+		</svg>
+
+		<!-- Arrow: RAG to Generation LLM - fragment 8 -->
+		<svg class="fragment" data-fragment-index="8" style="position: absolute; left: 395px; top: 145px; width: 40px; height: 90px; overflow: visible;">
+			<defs><marker id="arrowReq3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#e74c3c"/></marker></defs>
+			<line x1="20" y1="5" x2="20" y2="75" stroke="#e74c3c" stroke-width="3" marker-end="url(#arrowReq3)"/>
+		</svg>
+
+		<!-- Arrow: Generation LLM to RAG (response) - fragment 9 -->
+		<svg class="fragment" data-fragment-index="9" style="position: absolute; left: 430px; top: 145px; width: 40px; height: 90px; overflow: visible;">
+			<defs><marker id="arrowResp2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#e74c3c"/></marker></defs>
+			<line x1="20" y1="75" x2="20" y2="5" stroke="#e74c3c" stroke-width="3" stroke-dasharray="5,3" marker-end="url(#arrowResp2)"/>
+		</svg>
+
+		<!-- Arrow: RAG to User (final response) - fragment 10 -->
+		<svg class="fragment" data-fragment-index="10" style="position: absolute; left: 85px; top: 150px; width: 80px; height: 50px; overflow: visible;">
+			<defs><marker id="arrowResp3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2ecc71"/></marker></defs>
+			<line x1="65" y1="5" x2="0" y2="30" stroke="#2ecc71" stroke-width="3" stroke-dasharray="5,3" marker-end="url(#arrowResp3)"/>
+			<text x="5" y="50" fill="#2ecc71" font-size="12" font-weight="bold">response</text>
+		</svg>
+
+		<!-- Highlight box for focus area (K8S + CPU layer) - fragment 14 -->
+		<div class="fragment" data-fragment-index="14" style="position: absolute; left: 125px; top: -5px; width: 860px; height: 135px; border: 4px solid #f39c12; border-radius: 15px; background: rgba(243, 156, 18, 0.15);">
+			<div style="position: absolute; right: 10px; top: -30px; background: #f39c12; color: white; padding: 5px 15px; border-radius: 5px; font-size: 14px; font-weight: bold;">
+				Focus area for this presentation
+			</div>
+		</div>
+
+		<!-- Fade overlay for GPU layer - fragment 14 -->
+		<div class="fragment" data-fragment-index="14" style="position: absolute; left: 125px; top: 195px; width: 860px; height: 220px; background: rgba(255,255,255,0.7); border-radius: 12px;"></div>
+	</div>
+</section>
