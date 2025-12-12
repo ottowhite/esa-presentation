@@ -42,20 +42,49 @@
 			<!-- Simple image slides -->
 			<section>
 				<h3>Critical-path Aware Parallelism</h3>
-				<img src="assets/data/plots/1_rag_time_distributions.png" class="r-stretch">
+				<ul style="font-size: 24px; margin-bottom: 10px;">
+					<li class="fragment">K8S default behavior:
+						<ul style="font-size: 20px; margin-top: 5px;">
+							<li class="fragment">One model per GPU</li>
+							<li class="fragment">Reactively scales based on queue sizes</li>
+							<li class="fragment">Optimizes throughput, no latency awareness</li>
+							<li class="fragment">Only explores the data parallel dimension</li>
+						</ul>
+					</li>
+					<li class="fragment">We can do better</li>
+				</ul>
+				<img src="assets/data/plots/1_rag_time_distributions.png" style="max-height: 350px;" class="fragment">
+				<ul style="font-size: 24px; margin-top: 10px;">
+					<li class="fragment">LLM latency 100x embedding latency</li>
+					<li class="fragment">LLM is the critical path</li>
+					<li class="fragment">TP2 halves RAG application latency</li>
+				</ul>
 			</section>
 
 			<section>
 				<h3>Critical-path Aware Parallelism</h3>
-				<img src="assets/data/rag_parallelism_online_serving_realistic_prompt/plots/simple_rag/throughput_vs_latency_95p.png"
-					class="r-stretch">
+				<div style="display: flex; align-items: center; gap: 30px; margin-top: 20px;">
+					<ul style="font-size: 24px; width: 250px;">
+						<li><strong>2.4x</strong> improvement in latency</li>
+						<li style="margin-top: 10px;">Minor degradation in throughput</li>
+					</ul>
+					<img src="assets/data/rag_parallelism_online_serving_realistic_prompt/plots/simple_rag/throughput_vs_latency_95p.png"
+						style="max-height: 450px; max-width: 700px;">
+				</div>
 			</section>
 			<section id="gpu-cluster-deployment-slide"></section>
 			<section id="gpu-cluster-colocation-slide"></section>
 			<section>
 				<h3>Critical-path Aware Co-location</h3>
-				<img src="assets/data/rag_colocation_online_serving/plots/simple_rag/throughput_vs_latency_95p.png"
-					class="r-stretch">
+				<div style="display: flex; align-items: center; gap: 30px; margin-top: 20px;">
+					<ul style="font-size: 22px; width: 280px;">
+						<li><strong>2x</strong> throughput over K8S</li>
+						<li style="margin-top: 10px;"><strong>50%</strong> over best manual K8S config</li>
+						<li style="margin-top: 10px;">K8S: data parallelism only</li>
+					</ul>
+					<img src="assets/data/rag_colocation_online_serving/plots/simple_rag/throughput_vs_latency_95p.png"
+						style="max-height: 450px; max-width: 650px;">
+				</div>
 			</section>
 			<!-- GRAVEYARD-->
 			<section id="rag-pipeline-slide"></section>
