@@ -1,250 +1,144 @@
 <section>
 	<h3>Typical Architecture</h3>
-	<div style="position: relative; width: 1000px; height: 580px; margin: 0 auto;">
-		<!-- Users on left side (always visible) -->
-		<div style="position: absolute; left: -40px; top: 180px; text-align: center;">
-			<svg width="100" height="130" viewBox="0 0 70 100">
-				<!-- User 1 (front) -->
-				<circle cx="35" cy="25" r="12" fill="#555" />
-				<path d="M35 40c-18 0-24 9-24 18v3h48v-3c0-9-6-18-24-18z" fill="#555" />
-				<!-- User 2 (back left) -->
-				<circle cx="18" cy="18" r="9" fill="#888" />
-				<path d="M18 30c-12 0-16 6-16 12v2h32v-2c0-6-4-12-16-12z" fill="#888" />
-				<!-- User 3 (back right) -->
-				<circle cx="52" cy="18" r="9" fill="#888" />
-				<path d="M52 30c-12 0-16 6-16 12v2h32v-2c0-6-4-12-16-12z" fill="#888" />
-			</svg>
-			<div style="font-size: 18px; color: #555; font-weight: bold;">Users</div>
+
+	<!-- Top Half: System Architecture Diagram (scaled down) -->
+	<div style="position: relative; width: 700px; height: 220px; margin: 0 auto; transform: scale(0.9); transform-origin: top center;">
+		<!-- K8S Layer (top) -->
+		<div style="position: absolute; left: 70px; top: 0px; width: 560px; height: 35px; background: #3498db; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+			<span style="color: white; font-weight: bold; font-size: 20px;">K8S</span>
 		</div>
 
-		<!-- Swearing speech bubble - fragment 11 -->
-		<div class="fragment" data-fragment-index="11" style="position: absolute; left: -25px; top: 100px;">
-			<svg width="80" height="60" viewBox="0 0 70 50">
-				<path d="M5 5 Q5 0 15 0 L55 0 Q65 0 65 10 L65 30 Q65 40 55 40 L25 40 L15 50 L18 40 L15 40 Q5 40 5 30 Z"
-					fill="white" stroke="#e74c3c" stroke-width="2" />
-			</svg>
-			<div style="position: absolute; top: 10px; left: 15px; font-size: 18px; font-weight: bold; color: #e74c3c;">
-				F*#!</div>
+		<!-- LLM Application (RAG) -->
+		<div style="position: absolute; left: 80px; top: 70px; width: 130px; height: 45px; background: #2ecc71; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 10;">
+			<span style="color: white; font-weight: bold; font-size: 14px; text-align: center;">LLM Application<br>(RAG)</span>
 		</div>
 
-		<!-- K8S Layer (top) - fragment 3 -->
-		<div class="fragment" data-fragment-index="3"
-			style="position: absolute; left: 100px; top: 0px; width: 850px; height: 50px; background: #3498db; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-			<span style="color: white; font-weight: bold; font-size: 28px;">K8S</span>
-		</div>
-
-		<!-- Annotation for K8S - fragment 13 -->
-		<div class="fragment" data-fragment-index="13"
-			style="position: absolute; left: 670px; top: -55px; width: 280px;">
-			<div
-				style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 10px; font-size: 14px; color: #856404;">
-				Scheduling GPUs at the model scale, without application awareness
-			</div>
-			<svg style="position: absolute; left: 50px; top: 48px;" width="30" height="30">
-				<path d="M15 0 L15 25 L10 20 M15 25 L20 20" stroke="#ffc107" stroke-width="2" fill="none" />
-			</svg>
-		</div>
-
-		<!-- LLM Application<br>(RAG) Application - fragment 1 (appears first, before infrastructure) -->
-		<div class="fragment" data-fragment-index="1"
-			style="position: absolute; left: 115px; top: 105px; width: 180px; height: 60px; background: #2ecc71; border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 10;">
-			<span style="color: white; font-weight: bold; font-size: 22px;">LLM Application<br>(RAG)</span>
-		</div>
-
-		<!-- LLM Application<br>(Coding Agent) Application - fragment 1 (appears first, before infrastructure) -->
-		<div class="fragment" data-fragment-index="1"
-			style="position: absolute; left: 535px; top: 105px; width: 180px; height: 60px; background: #9b59b6; border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 10;">
-			<span style="color: white; font-weight: bold; font-size: 22px;">LLM Application<br>(Coding Agent)</span>
-		</div>
-
-		<!-- Node 1 (left) - fragment 2 -->
-		<div class="fragment" data-fragment-index="2"
-			style="position: absolute; left: 100px; top: 65px; width: 400px; height: 280px; border: 3px dashed #666; border-radius: 12px; background: rgba(240,240,240,0.3);">
-			<span
-				style="position: absolute; left: 15px; top: 8px; font-size: 18px; color: #555; font-weight: bold;">Node
-				1</span>
+		<!-- Node 1 (left) -->
+		<div style="position: absolute; left: 70px; top: 45px; width: 280px; height: 170px; border: 2px dashed #666; border-radius: 10px; background: rgba(240,240,240,0.3);">
+			<span style="position: absolute; left: 10px; top: 5px; font-size: 14px; color: #555; font-weight: bold;">Node 1</span>
 
 			<!-- CPU boxes row -->
-			<div style="position: absolute; left: 15px; top: 35px; display: flex; gap: 10px;">
-				<!-- CPU 0 (left - contains LLM Application<br>(RAG)) -->
-				<div
-					style="width: 180px; height: 70px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 8px; position: relative;">
-					<span style="position: absolute; left: 8px; top: 4px; font-size: 12px; color: #7f8c8d;">CPU</span>
+			<div style="position: absolute; left: 10px; top: 25px; display: flex; gap: 8px;">
+				<div style="width: 125px; height: 50px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 10px; color: #7f8c8d;">CPU</span>
 				</div>
-				<!-- CPU 1 (right - empty) -->
-				<div
-					style="width: 180px; height: 70px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 8px; position: relative;">
-					<span style="position: absolute; left: 8px; top: 4px; font-size: 12px; color: #7f8c8d;">CPU</span>
+				<div style="width: 125px; height: 50px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 10px; color: #7f8c8d;">CPU</span>
 				</div>
 			</div>
 
 			<!-- GPU boxes row -->
-			<div style="position: absolute; left: 15px; top: 175px; display: flex; gap: 10px;">
-				<!-- GPU 0 -->
-				<div
-					style="width: 180px; height: 80px; background: #2c3e50; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-					<span style="color: #ecf0f1; font-weight: bold; font-size: 18px;">GPU 0</span>
+			<div style="position: absolute; left: 10px; top: 115px; display: flex; gap: 8px;">
+				<div style="width: 125px; height: 45px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+					<span style="color: #ecf0f1; font-weight: bold; font-size: 14px;">GPU 0</span>
 				</div>
-				<!-- GPU 1 -->
-				<div
-					style="width: 180px; height: 80px; background: #2c3e50; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-					<span style="color: #ecf0f1; font-weight: bold; font-size: 18px;">GPU 1</span>
+				<div style="width: 125px; height: 45px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+					<span style="color: #ecf0f1; font-weight: bold; font-size: 14px;">GPU 1</span>
 				</div>
 			</div>
 		</div>
 
-		<!-- Node 2 (right) - fragment 2 -->
-		<div class="fragment" data-fragment-index="2"
-			style="position: absolute; left: 520px; top: 65px; width: 400px; height: 280px; border: 3px dashed #666; border-radius: 12px; background: rgba(240,240,240,0.3);">
-			<span
-				style="position: absolute; left: 15px; top: 8px; font-size: 18px; color: #555; font-weight: bold;">Node
-				2</span>
+		<!-- Node 2 (right - empty) -->
+		<div style="position: absolute; left: 360px; top: 45px; width: 280px; height: 170px; border: 2px dashed #666; border-radius: 10px; background: rgba(240,240,240,0.3);">
+			<span style="position: absolute; left: 10px; top: 5px; font-size: 14px; color: #555; font-weight: bold;">Node 2</span>
 
 			<!-- CPU boxes row -->
-			<div style="position: absolute; left: 15px; top: 35px; display: flex; gap: 10px;">
-				<!-- CPU 0 (left - contains LLM Application<br>(Coding Agent)) -->
-				<div
-					style="width: 180px; height: 70px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 8px; position: relative;">
-					<span style="position: absolute; left: 8px; top: 4px; font-size: 12px; color: #7f8c8d;">CPU</span>
+			<div style="position: absolute; left: 10px; top: 25px; display: flex; gap: 8px;">
+				<div style="width: 125px; height: 50px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 10px; color: #7f8c8d;">CPU</span>
 				</div>
-				<!-- CPU 1 (right - empty) -->
-				<div
-					style="width: 180px; height: 70px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 8px; position: relative;">
-					<span style="position: absolute; left: 8px; top: 4px; font-size: 12px; color: #7f8c8d;">CPU</span>
+				<div style="width: 125px; height: 50px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 10px; color: #7f8c8d;">CPU</span>
 				</div>
 			</div>
 
 			<!-- GPU boxes row -->
-			<div style="position: absolute; left: 15px; top: 175px; display: flex; gap: 10px;">
-				<!-- GPU 2 -->
-				<div
-					style="width: 180px; height: 80px; background: #2c3e50; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-					<span style="color: #ecf0f1; font-weight: bold; font-size: 18px;">GPU 2</span>
+			<div style="position: absolute; left: 10px; top: 115px; display: flex; gap: 8px;">
+				<div style="width: 125px; height: 45px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+					<span style="color: #ecf0f1; font-weight: bold; font-size: 14px;">GPU 2</span>
 				</div>
-				<!-- GPU 3 -->
-				<div
-					style="width: 180px; height: 80px; background: #2c3e50; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-					<span style="color: #ecf0f1; font-weight: bold; font-size: 18px;">GPU 3</span>
+				<div style="width: 125px; height: 45px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+					<span style="color: #ecf0f1; font-weight: bold; font-size: 14px;">GPU 3</span>
 				</div>
 			</div>
 		</div>
 
-		<!-- LLM Engine<br>(Embedding Model) (stacked on top of GPU 0) - fragment 4 -->
-		<div class="fragment" data-fragment-index="4"
-			style="position: absolute; left: 115px; top: 195px; width: 180px; height: 50px; background: #e67e22; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-			<span style="color: white; font-weight: bold; font-size: 16px;">LLM Engine<br>(Embedding Model)</span>
+		<!-- LLM Engine (Embedding Model) on GPU 0 -->
+		<div style="position: absolute; left: 80px; top: 125px; width: 125px; height: 35px; background: #e67e22; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+			<span style="color: white; font-weight: bold; font-size: 11px; text-align: center;">LLM Engine<br>(Embedding Model)</span>
 		</div>
 
-		<!-- LLM Engine<br>(Generation LLM) (stacked on top of GPU 1) - fragment 4 -->
-		<div class="fragment" data-fragment-index="4"
-			style="position: absolute; left: 305px; top: 195px; width: 180px; height: 50px; background: #e74c3c; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-			<span style="color: white; font-weight: bold; font-size: 16px;">LLM Engine<br>(Generation LLM)</span>
+		<!-- LLM Engine (Generation LLM) on GPU 1 -->
+		<div style="position: absolute; left: 213px; top: 125px; width: 125px; height: 35px; background: #e74c3c; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+			<span style="color: white; font-weight: bold; font-size: 11px; text-align: center;">LLM Engine<br>(Generation LLM)</span>
 		</div>
+	</div>
 
-		<!-- LLM Engine<br>(Frontier model) (stacked on top of GPU 2) - fragment 4 -->
-		<div class="fragment" data-fragment-index="4"
-			style="position: absolute; left: 535px; top: 195px; width: 180px; height: 50px; background: #8e44ad; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-			<span style="color: white; font-weight: bold; font-size: 16px;">LLM Engine<br>(Frontier model)</span>
-		</div>
-
-		<!-- Annotation for LLM Engines - fragment 12 -->
-		<div class="fragment" data-fragment-index="12"
-			style="position: absolute; left: 270px; top: 360px; width: 350px;">
-			<div
-				style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 12px; font-size: 14px; color: #856404; text-align: center;">
-				Making local request scheduling decisions.
-			</div>
-			<svg style="position: absolute; left: -30px; top: 10px;" width="40" height="30">
-				<path d="M35 15 L5 15 L12 10 M5 15 L12 20" stroke="#ffc107" stroke-width="2" fill="none" />
-			</svg>
-			<svg style="position: absolute; right: -30px; top: 10px;" width="40" height="30">
-				<path d="M5 15 L35 15 L28 10 M35 15 L28 20" stroke="#ffc107" stroke-width="2" fill="none" />
+	<!-- Bottom Half: RAG Workflow Diagram (scaled down, static) -->
+	<div style="position: relative; width: 750px; height: 220px; margin: 20px auto 0;">
+		<!-- User icon -->
+		<div style="position: absolute; left: 20px; top: 80px;">
+			<svg width="50" height="50" viewBox="0 0 24 24" fill="#666">
+				<circle cx="12" cy="8" r="4"/>
+				<path d="M12 14c-6 0-8 3-8 6v1h16v-1c0-3-2-6-8-6z"/>
 			</svg>
 		</div>
 
-		<!-- Arrow: User to LLM Application<br>(RAG) - fragment 5 -->
-		<svg class="fragment" data-fragment-index="5"
-			style="position: absolute; left: 45px; top: 130px; width: 80px; height: 50px; overflow: visible;">
-			<defs>
-				<marker id="arrowReq1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-					<path d="M0,0 L0,6 L9,3 z" fill="#2ecc71" />
-				</marker>
-			</defs>
-			<line x1="0" y1="40" x2="65" y2="15" stroke="#2ecc71" stroke-width="3" marker-end="url(#arrowReq1)" />
-			<text x="5" y="55" fill="#2ecc71" font-size="12" font-weight="bold">request</text>
+		<!-- Arrow from User to Embedding Model with "prompt" label -->
+		<svg style="position: absolute; left: 70px; top: 55px; width: 90px; height: 70px;">
+			<defs><marker id="arrow1-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
+			<line x1="8" y1="55" x2="75" y2="15" stroke="#666" stroke-width="2" marker-end="url(#arrow1-static)"/>
+			<text x="20" y="30" fill="#666" font-size="12" font-weight="bold">prompt</text>
 		</svg>
 
-		<!-- Arrow: LLM Application<br>(RAG) to LLM Engine<br>(Embedding Model) - fragment 6 -->
-		<svg class="fragment" data-fragment-index="6"
-			style="position: absolute; left: 180px; top: 165px; width: 40px; height: 35px; overflow: visible;">
-			<defs>
-				<marker id="arrowReq2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-					<path d="M0,0 L0,6 L9,3 z" fill="#e67e22" />
-				</marker>
-			</defs>
-			<line x1="20" y1="5" x2="20" y2="25" stroke="#e67e22" stroke-width="3" marker-end="url(#arrowReq2)" />
-		</svg>
-
-		<!-- Arrow: LLM Engine<br>(Embedding Model) to LLM Application<br>(RAG) (response) - fragment 7 -->
-		<svg class="fragment" data-fragment-index="7"
-			style="position: absolute; left: 210px; top: 165px; width: 40px; height: 35px; overflow: visible;">
-			<defs>
-				<marker id="arrowResp1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-					<path d="M0,0 L0,6 L9,3 z" fill="#e67e22" />
-				</marker>
-			</defs>
-			<line x1="20" y1="25" x2="20" y2="5" stroke="#e67e22" stroke-width="3" stroke-dasharray="5,3"
-				marker-end="url(#arrowResp1)" />
-		</svg>
-
-		<!-- Arrow: LLM Application<br>(RAG) to LLM Engine<br>(Generation LLM) - fragment 8 (diagonal from LLM Application<br>(RAG) right side to LLM Engine<br>(Generation LLM)) -->
-		<svg class="fragment" data-fragment-index="8"
-			style="position: absolute; left: 265px; top: 125px; width: 70px; height: 80px; overflow: visible;">
-			<defs>
-				<marker id="arrowReq3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-					<path d="M0,0 L0,6 L9,3 z" fill="#e74c3c" />
-				</marker>
-			</defs>
-			<line x1="5" y1="5" x2="55" y2="65" stroke="#e74c3c" stroke-width="3" marker-end="url(#arrowReq3)" />
-		</svg>
-
-		<!-- Arrow: LLM Engine<br>(Generation LLM) to LLM Application<br>(RAG) (response) - fragment 9 (diagonal back, offset for spacing) -->
-		<svg class="fragment" data-fragment-index="9"
-			style="position: absolute; left: 285px; top: 140px; width: 70px; height: 80px; overflow: visible;">
-			<defs>
-				<marker id="arrowResp2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-					<path d="M0,0 L0,6 L9,3 z" fill="#e74c3c" />
-				</marker>
-			</defs>
-			<line x1="55" y1="65" x2="5" y2="5" stroke="#e74c3c" stroke-width="3" stroke-dasharray="5,3"
-				marker-end="url(#arrowResp2)" />
-		</svg>
-
-		<!-- Arrow: LLM Application<br>(RAG) to User (final response) - fragment 10 -->
-		<svg class="fragment" data-fragment-index="10"
-			style="position: absolute; left: 45px; top: 150px; width: 80px; height: 50px; overflow: visible;">
-			<defs>
-				<marker id="arrowResp3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-					<path d="M0,0 L0,6 L9,3 z" fill="#2ecc71" />
-				</marker>
-			</defs>
-			<line x1="65" y1="5" x2="0" y2="30" stroke="#2ecc71" stroke-width="3" stroke-dasharray="5,3"
-				marker-end="url(#arrowResp3)" />
-			<text x="5" y="50" fill="#2ecc71" font-size="12" font-weight="bold">response</text>
-		</svg>
-
-		<!-- Highlight box for focus area (K8S + CPU layer) - fragment 14 -->
-		<div class="fragment" data-fragment-index="14"
-			style="position: absolute; left: 95px; top: -5px; width: 830px; height: 120px; border: 4px solid #f39c12; border-radius: 15px; background: rgba(243, 156, 18, 0.15);">
-			<div
-				style="position: absolute; right: 10px; top: -30px; background: #f39c12; color: white; padding: 5px 15px; border-radius: 5px; font-size: 14px; font-weight: bold;">
-				Focus area for this presentation
-			</div>
+		<!-- Embedding Model -->
+		<div style="position: absolute; left: 155px; top: 10px; background: #9b59b6; padding: 12px 18px; border-radius: 10px; color: white; font-weight: bold; font-size: 16px; text-align: center; box-shadow: 0 3px 5px rgba(0,0,0,0.1);">
+			Embedding<br>Model
 		</div>
 
-		<!-- Fade overlay for GPU layer - fragment 14 -->
-		<div class="fragment" data-fragment-index="14"
-			style="position: absolute; left: 95px; top: 180px; width: 830px; height: 180px; background: rgba(255,255,255,0.7); border-radius: 12px;">
+		<!-- Arrow from Embedding to Database with "embedding" label -->
+		<svg style="position: absolute; left: 275px; top: 25px; width: 100px; height: 40px;">
+			<defs><marker id="arrow2-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
+			<line x1="5" y1="20" x2="85" y2="20" stroke="#666" stroke-width="2" marker-end="url(#arrow2-static)"/>
+			<text x="15" y="14" fill="#666" font-size="12" font-weight="bold">embedding</text>
+		</svg>
+
+		<!-- Vector Database (cylinder) -->
+		<div style="position: absolute; left: 365px; top: 0px; text-align: center;">
+			<svg width="90" height="80" viewBox="0 0 70 70">
+				<ellipse cx="35" cy="15" rx="25" ry="10" fill="#e67e22"/>
+				<rect x="10" y="15" width="50" height="40" fill="#e67e22"/>
+				<ellipse cx="35" cy="55" rx="25" ry="10" fill="#d35400"/>
+				<ellipse cx="35" cy="15" rx="25" ry="10" fill="none" stroke="#fff" stroke-width="1" opacity="0.3"/>
+			</svg>
+			<div style="font-size: 14px; color: #666; margin-top: 0px;">Vector Database</div>
 		</div>
+
+		<!-- Arrow from Database to LLM with "retrieved documents" label -->
+		<svg style="position: absolute; left: 450px; top: 40px; width: 140px; height: 100px;">
+			<defs><marker id="arrow3-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
+			<line x1="8" y1="8" x2="125" y2="80" stroke="#666" stroke-width="2" marker-end="url(#arrow3-static)"/>
+			<text x="50" y="30" fill="#666" font-size="12" font-weight="bold">retrieved</text>
+			<text x="50" y="44" fill="#666" font-size="12" font-weight="bold">documents</text>
+		</svg>
+
+		<!-- LLM -->
+		<div style="position: absolute; left: 580px; top: 115px; background: #e74c3c; padding: 18px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; box-shadow: 0 3px 5px rgba(0,0,0,0.1);">
+			LLM
+		</div>
+
+		<!-- Arrow from User directly to LLM with "prompt" label -->
+		<svg style="position: absolute; left: 70px; top: 115px; width: 510px; height: 40px;">
+			<defs><marker id="arrow5-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
+			<line x1="8" y1="20" x2="495" y2="20" stroke="#666" stroke-width="2" marker-end="url(#arrow5-static)"/>
+			<text x="230" y="14" fill="#666" font-size="12" font-weight="bold">prompt</text>
+		</svg>
+
+		<!-- Arrow from LLM to Response with "response" label -->
+		<svg style="position: absolute; left: 680px; top: 125px; width: 70px; height: 40px;">
+			<defs><marker id="arrow6-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
+			<line x1="5" y1="20" x2="55" y2="20" stroke="#666" stroke-width="2" marker-end="url(#arrow6-static)"/>
+			<text x="10" y="14" fill="#666" font-size="12" font-weight="bold">response</text>
+		</svg>
 	</div>
 </section>
