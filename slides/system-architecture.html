@@ -1,0 +1,90 @@
+<section>
+	<h3>System Architecture</h3>
+
+	<!-- Main container with bullet points on left, diagram on right -->
+	<div style="display: flex; width: 960px; margin: 0 auto; gap: 30px;">
+
+		<!-- Left side: Bullet points (1/3) -->
+		<div style="width: 280px; padding-top: 40px;">
+			<ul style="font-size: 22px; color: #333; margin: 0; list-style-type: disc; line-height: 1.5;">
+				<li class="fragment">Current approaches only mitigate HoL blocking for single engine</li>
+				<li class="fragment" style="margin-top: 18px;">Applications can span multiple engines</li>
+				<li class="fragment" style="margin-top: 18px;">Need application-aware scheduling</li>
+			</ul>
+		</div>
+
+		<!-- Right side: System Architecture Diagram (2/3) -->
+		<div style="position: relative; width: 620px; height: 420px;">
+			<!-- K8S Layer -->
+			<div style="position: absolute; left: 0px; top: 0px; width: 620px; height: 45px; background: #3498db; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+				<span style="color: white; font-weight: bold; font-size: 22px;">K8S</span>
+			</div>
+
+			<!-- Node 1 (left - full size) -->
+			<div style="position: absolute; left: 0px; top: 55px; width: 400px; height: 350px; border: 2px dashed #666; border-radius: 10px; background: rgba(240,240,240,0.3);">
+				<span style="position: absolute; left: 12px; top: 8px; font-size: 16px; color: #555; font-weight: bold;">Node 1</span>
+
+				<!-- CPU boxes row -->
+				<div style="position: absolute; left: 12px; top: 35px; display: flex; gap: 10px;">
+					<!-- CPU 0 (contains LLM Application RAG) -->
+					<div style="width: 182px; height: 95px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+						<span style="position: absolute; left: 8px; top: 4px; font-size: 12px; color: #7f8c8d;">CPU</span>
+						<!-- LLM Application (RAG) inside CPU -->
+						<div style="position: absolute; left: 8px; top: 24px; width: 165px; height: 62px; background: #2ecc71; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+							<span style="color: white; font-weight: bold; font-size: 13px; text-align: center;">LLM Application<br>(RAG)</span>
+						</div>
+					</div>
+					<!-- CPU 1 (empty) -->
+					<div style="width: 182px; height: 95px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+						<span style="position: absolute; left: 8px; top: 4px; font-size: 12px; color: #7f8c8d;">CPU</span>
+					</div>
+				</div>
+
+				<!-- GPU boxes row -->
+				<div style="position: absolute; left: 12px; top: 145px; display: flex; gap: 10px;">
+					<!-- GPU 0 (contains LLM Engine Generation LLM) -->
+					<div style="width: 182px; height: 130px; background: #d5dbdb; border: 2px solid #95a5a6; border-radius: 6px; position: relative;">
+						<span style="position: absolute; left: 8px; top: 4px; font-size: 14px; color: #555; font-weight: bold;">GPU 0</span>
+						<!-- LLM Engine (Generation LLM) inside GPU -->
+						<div style="position: absolute; left: 8px; top: 28px; width: 165px; height: 90px; background: #e74c3c; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+							<span style="color: white; font-weight: bold; font-size: 13px; text-align: center;">LLM Engine<br>(Generation LLM)</span>
+						</div>
+					</div>
+					<!-- GPU 1 (contains LLM Engine Embedding Model) -->
+					<div style="width: 182px; height: 130px; background: #d5dbdb; border: 2px solid #95a5a6; border-radius: 6px; position: relative;">
+						<span style="position: absolute; left: 8px; top: 4px; font-size: 14px; color: #555; font-weight: bold;">GPU 1</span>
+						<!-- LLM Engine (Embedding Model) inside GPU -->
+						<div style="position: absolute; left: 8px; top: 28px; width: 165px; height: 90px; background: #e67e22; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+							<span style="color: white; font-weight: bold; font-size: 13px; text-align: center;">LLM Engine<br>(Embedding Model)</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Node 2 (right - narrower) -->
+			<div style="position: absolute; left: 415px; top: 55px; width: 205px; height: 350px; border: 2px dashed #666; border-radius: 10px; background: rgba(240,240,240,0.3);">
+				<span style="position: absolute; left: 12px; top: 8px; font-size: 16px; color: #555; font-weight: bold;">Node 2</span>
+
+				<!-- CPU boxes row (stacked vertically) -->
+				<div style="position: absolute; left: 12px; top: 35px; display: flex; flex-direction: column; gap: 8px;">
+					<div style="width: 180px; height: 42px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+						<span style="position: absolute; left: 8px; top: 4px; font-size: 11px; color: #7f8c8d;">CPU</span>
+					</div>
+					<div style="width: 180px; height: 42px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+						<span style="position: absolute; left: 8px; top: 4px; font-size: 11px; color: #7f8c8d;">CPU</span>
+					</div>
+				</div>
+
+				<!-- GPU boxes row (stacked vertically) -->
+				<div style="position: absolute; left: 12px; top: 145px; display: flex; flex-direction: column; gap: 8px;">
+					<div style="width: 180px; height: 62px; background: #d5dbdb; border: 2px solid #95a5a6; border-radius: 6px; position: relative;">
+						<span style="position: absolute; left: 8px; top: 4px; font-size: 13px; color: #555; font-weight: bold;">GPU 2</span>
+					</div>
+					<div style="width: 180px; height: 62px; background: #d5dbdb; border: 2px solid #95a5a6; border-radius: 6px; position: relative;">
+						<span style="position: absolute; left: 8px; top: 4px; font-size: 13px; color: #555; font-weight: bold;">GPU 3</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,72 +1,95 @@
 <section>
-	<h3>RAG Pipeline</h3>
-	<div style="position: relative; width: 1000px; height: 500px; margin: 10px auto;">
-		<!-- User icon - visible immediately -->
-		<div style="position: absolute; left: 20px; top: 200px;">
-			<svg width="80" height="80" viewBox="0 0 24 24" fill="#666">
+	<h3>Future Work: Fairness</h3>
+	<div style="position: relative; width: 1000px; height: 380px; margin: 10px auto;">
+		<!-- User icon -->
+		<div style="position: absolute; left: 0px; top: 140px;">
+			<svg width="70" height="70" viewBox="0 0 24 24" fill="#666">
 				<circle cx="12" cy="8" r="4"/>
 				<path d="M12 14c-6 0-8 3-8 6v1h16v-1c0-3-2-6-8-6z"/>
 			</svg>
 		</div>
 
-		<!-- Retrieval Path (top) -->
-		<!-- Arrow from User to Embedding Model with "prompt" label -->
-		<svg class="fragment" data-fragment-index="0" style="position: absolute; left: 100px; top: 140px; width: 120px; height: 100px;">
-			<defs><marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-			<line x1="10" y1="90" x2="100" y2="20" stroke="#666" stroke-width="2" marker-end="url(#arrow1)"/>
-			<text x="30" y="45" fill="#666" font-size="14" font-weight="bold">prompt</text>
+		<!-- Arrow from User to RAG Agent with "Prompt" label -->
+		<svg style="position: absolute; left: 70px; top: 140px; width: 90px; height: 50px;">
+			<defs><marker id="arrow-user-rag" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
+			<line x1="10" y1="25" x2="75" y2="25" stroke="#666" stroke-width="2" marker-end="url(#arrow-user-rag)"/>
+			<text x="20" y="18" fill="#666" font-size="13" font-weight="bold">Prompt</text>
+		</svg>
+
+		<!-- RAG Agent (new LLM box) -->
+		<div style="position: absolute; left: 160px; top: 120px; background: #2ecc71; padding: 18px 25px; border-radius: 10px; color: white; font-weight: bold; font-size: 18px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+			RAG<br>Agent
+		</div>
+
+		<!-- Arrow from RAG Agent to Embedding Model -->
+		<svg style="position: absolute; left: 250px; top: 70px; width: 90px; height: 80px;">
+			<defs><marker id="arrow-rag-embed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
+			<line x1="10" y1="70" x2="75" y2="15" stroke="#666" stroke-width="2" marker-end="url(#arrow-rag-embed)"/>
 		</svg>
 
 		<!-- Embedding Model -->
-		<div class="fragment" data-fragment-index="0" style="position: absolute; left: 210px; top: 30px; background: #9b59b6; padding: 20px 28px; border-radius: 12px; color: white; font-weight: bold; font-size: 22px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+		<div style="position: absolute; left: 330px; top: 5px; background: #e67e22; padding: 16px 22px; border-radius: 10px; color: white; font-weight: bold; font-size: 17px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 			Embedding<br>Model
 		</div>
 
-		<!-- Arrow from Embedding to Database with "embedding" label -->
-		<svg class="fragment" data-fragment-index="1" style="position: absolute; left: 370px; top: 50px; width: 130px; height: 50px;">
-			<defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-			<line x1="5" y1="25" x2="115" y2="25" stroke="#666" stroke-width="2" marker-end="url(#arrow2)"/>
-			<text x="25" y="18" fill="#666" font-size="14" font-weight="bold">embedding</text>
+		<!-- Arrow from Embedding to Database with "Embedding" label -->
+		<svg style="position: absolute; left: 460px; top: 25px; width: 120px; height: 45px;">
+			<defs><marker id="arrow-embed-db" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
+			<line x1="5" y1="22" x2="105" y2="22" stroke="#666" stroke-width="2" marker-end="url(#arrow-embed-db)"/>
+			<text x="25" y="15" fill="#666" font-size="12" font-weight="bold">Embedding</text>
 		</svg>
 
-		<!-- Vector Database (cylinder symbol with label) -->
-		<div class="fragment" data-fragment-index="1" style="position: absolute; left: 490px; top: 5px; text-align: center;">
-			<svg width="120" height="110" viewBox="0 0 70 70">
-				<!-- Cylinder body -->
+		<!-- Vector Database (cylinder) -->
+		<div style="position: absolute; left: 570px; top: -10px; text-align: center;">
+			<svg width="90" height="85" viewBox="0 0 70 70">
 				<ellipse cx="35" cy="15" rx="25" ry="10" fill="#e67e22"/>
 				<rect x="10" y="15" width="50" height="40" fill="#e67e22"/>
 				<ellipse cx="35" cy="55" rx="25" ry="10" fill="#d35400"/>
-				<!-- Top highlight -->
 				<ellipse cx="35" cy="15" rx="25" ry="10" fill="none" stroke="#fff" stroke-width="1" opacity="0.3"/>
 			</svg>
-			<div style="font-size: 18px; color: #666; margin-top: 2px;">Vector Database</div>
+			<div style="font-size: 14px; color: #666; margin-top: 0px;">Vector Database</div>
 		</div>
 
-		<!-- Arrow from Database to LLM with "retrieved documents" label -->
-		<svg class="fragment" data-fragment-index="2" style="position: absolute; left: 600px; top: 80px; width: 200px; height: 160px;">
-			<defs><marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-			<line x1="10" y1="10" x2="180" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow3)"/>
-			<text x="70" y="50" fill="#666" font-size="14" font-weight="bold">retrieved</text>
-			<text x="70" y="67" fill="#666" font-size="14" font-weight="bold">documents</text>
+		<!-- Arrow from Database to Generation LLM with "Retrieved Documents" label -->
+		<svg style="position: absolute; left: 650px; top: 55px; width: 120px; height: 110px;">
+			<defs><marker id="arrow-db-llm" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
+			<line x1="10" y1="10" x2="105" y2="90" stroke="#666" stroke-width="2" marker-end="url(#arrow-db-llm)"/>
+			<text x="35" y="30" fill="#666" font-size="12" font-weight="bold">Retrieved</text>
+			<text x="35" y="44" fill="#666" font-size="12" font-weight="bold">Documents</text>
 		</svg>
 
-		<!-- LLM -->
-		<div class="fragment" data-fragment-index="2" style="position: absolute; left: 770px; top: 195px; background: #e74c3c; padding: 28px 45px; border-radius: 12px; color: white; font-weight: bold; font-size: 26px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-			LLM
+		<!-- Generation LLM (red box) -->
+		<div style="position: absolute; left: 755px; top: 120px; background: #e74c3c; padding: 18px 25px; border-radius: 10px; color: white; font-weight: bold; font-size: 16px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+			Generation<br>LLM
 		</div>
 
-		<!-- Direct Path (bottom) - Arrow from User directly to LLM with "prompt" label -->
-		<svg class="fragment" data-fragment-index="3" style="position: absolute; left: 100px; top: 245px; width: 670px; height: 50px;">
-			<defs><marker id="arrow5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-			<line x1="10" y1="25" x2="650" y2="25" stroke="#666" stroke-width="2" marker-end="url(#arrow5)"/>
-			<text x="310" y="18" fill="#666" font-size="14" font-weight="bold">prompt</text>
+		<!-- Arrow from RAG Agent to Generation LLM (direct path) -->
+		<svg style="position: absolute; left: 265px; top: 155px; width: 490px; height: 35px;">
+			<defs><marker id="arrow-rag-gen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
+			<line x1="5" y1="17" x2="475" y2="17" stroke="#666" stroke-width="2" marker-end="url(#arrow-rag-gen)"/>
 		</svg>
 
-		<!-- Arrow from LLM to Response with "response" label -->
-		<svg class="fragment" data-fragment-index="4" style="position: absolute; left: 905px; top: 220px; width: 100px; height: 50px;">
-			<defs><marker id="arrow6" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
-			<line x1="5" y1="25" x2="85" y2="25" stroke="#666" stroke-width="2" marker-end="url(#arrow6)"/>
-			<text x="20" y="18" fill="#666" font-size="14" font-weight="bold">response</text>
+		<!-- Arrow from Generation LLM to Response with "Response" label -->
+		<svg style="position: absolute; left: 880px; top: 140px; width: 75px; height: 45px;">
+			<defs><marker id="arrow-llm-resp" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
+			<line x1="5" y1="22" x2="60" y2="22" stroke="#666" stroke-width="2" marker-end="url(#arrow-llm-resp)"/>
+			<text x="8" y="15" fill="#666" font-size="11" font-weight="bold">Response</text>
+		</svg>
+
+		<!-- Backward cycle edge from Generation LLM back to RAG Agent (fragment) -->
+		<svg class="fragment" style="position: absolute; left: 160px; top: 210px; width: 650px; height: 100px;">
+			<defs><marker id="arrow-cycle" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#9b59b6"/></marker></defs>
+			<!-- Curved path going down and back -->
+			<path d="M 630 0 L 630 55 Q 630 80 600 80 L 50 80 Q 20 80 20 55 L 20 15"
+				stroke="#9b59b6" stroke-width="2" fill="none" marker-end="url(#arrow-cycle)" stroke-dasharray="8,4"/>
+			<text x="290" y="95" fill="#9b59b6" font-size="13" font-weight="bold">Iterate</text>
 		</svg>
 	</div>
+
+	<!-- Bullet points below diagram -->
+	<ul style="font-size: 24px; margin-top: 0px; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto;">
+		<li class="fragment">Common pattern in agentic applications</li>
+		<li class="fragment" style="margin-top: 12px;">Some requests far more expensive than others</li>
+		<li class="fragment" style="margin-top: 12px;">HoL blocking for the many cheaper requests that iterate fewer times</li>
+	</ul>
 </section>
