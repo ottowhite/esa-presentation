@@ -1,144 +1,154 @@
 <section>
 	<h3>Typical Architecture</h3>
 
-	<!-- Top Half: System Architecture Diagram (scaled down) -->
-	<div style="position: relative; width: 700px; height: 220px; margin: 0 auto; transform: scale(0.9); transform-origin: top center;">
+	<!-- Top Half: System Architecture Diagram -->
+	<div style="position: relative; width: 860px; height: 280px; margin: 0 auto;">
 		<!-- K8S Layer (top) -->
-		<div style="position: absolute; left: 70px; top: 0px; width: 560px; height: 35px; background: #3498db; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-			<span style="color: white; font-weight: bold; font-size: 20px;">K8S</span>
-		</div>
-
-		<!-- LLM Application (RAG) -->
-		<div style="position: absolute; left: 80px; top: 70px; width: 130px; height: 45px; background: #2ecc71; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 10;">
-			<span style="color: white; font-weight: bold; font-size: 14px; text-align: center;">LLM Application<br>(RAG)</span>
+		<div style="position: absolute; left: 50px; top: 0px; width: 760px; height: 44px; background: #3498db; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+			<span style="color: white; font-weight: bold; font-size: 24px;">K8S</span>
 		</div>
 
 		<!-- Node 1 (left) -->
-		<div style="position: absolute; left: 70px; top: 45px; width: 280px; height: 170px; border: 2px dashed #666; border-radius: 10px; background: rgba(240,240,240,0.3);">
-			<span style="position: absolute; left: 10px; top: 5px; font-size: 14px; color: #555; font-weight: bold;">Node 1</span>
+		<div style="position: absolute; left: 50px; top: 54px; width: 370px; height: 220px; border: 2px dashed #666; border-radius: 10px; background: rgba(240,240,240,0.3);">
+			<span style="position: absolute; left: 12px; top: 6px; font-size: 16px; color: #555; font-weight: bold;">Node 1</span>
 
 			<!-- CPU boxes row -->
-			<div style="position: absolute; left: 10px; top: 25px; display: flex; gap: 8px;">
-				<div style="width: 125px; height: 50px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
-					<span style="position: absolute; left: 6px; top: 3px; font-size: 10px; color: #7f8c8d;">CPU</span>
+			<div style="position: absolute; left: 12px; top: 30px; display: flex; gap: 12px;">
+				<!-- CPU 0 (contains LLM Application RAG) -->
+				<div style="width: 168px; height: 78px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 11px; color: #7f8c8d;">CPU</span>
+					<!-- LLM Application (RAG) inside CPU -->
+					<div style="position: absolute; left: 8px; top: 20px; width: 150px; height: 52px; background: #2ecc71; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+						<span style="color: white; font-weight: bold; font-size: 13px; text-align: center;">LLM Application<br>(RAG)</span>
+					</div>
 				</div>
-				<div style="width: 125px; height: 50px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
-					<span style="position: absolute; left: 6px; top: 3px; font-size: 10px; color: #7f8c8d;">CPU</span>
+				<!-- CPU 1 (empty) -->
+				<div style="width: 168px; height: 78px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 11px; color: #7f8c8d;">CPU</span>
 				</div>
 			</div>
 
 			<!-- GPU boxes row -->
-			<div style="position: absolute; left: 10px; top: 115px; display: flex; gap: 8px;">
-				<div style="width: 125px; height: 45px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-					<span style="color: #ecf0f1; font-weight: bold; font-size: 14px;">GPU 0</span>
+			<div style="position: absolute; left: 12px; top: 118px; display: flex; gap: 12px;">
+				<!-- GPU 0 (contains LLM Engine Embedding Model) -->
+				<div style="width: 168px; height: 90px; background: #d5dbdb; border: 2px solid #95a5a6; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 13px; color: #555; font-weight: bold;">GPU 0</span>
+					<!-- LLM Engine (Embedding Model) inside GPU -->
+					<div style="position: absolute; left: 8px; top: 22px; width: 150px; height: 60px; background: #e67e22; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+						<span style="color: white; font-weight: bold; font-size: 12px; text-align: center;">LLM Engine<br>(Embedding Model)</span>
+					</div>
 				</div>
-				<div style="width: 125px; height: 45px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-					<span style="color: #ecf0f1; font-weight: bold; font-size: 14px;">GPU 1</span>
+				<!-- GPU 1 (contains LLM Engine Generation LLM) -->
+				<div style="width: 168px; height: 90px; background: #d5dbdb; border: 2px solid #95a5a6; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 13px; color: #555; font-weight: bold;">GPU 1</span>
+					<!-- LLM Engine (Generation LLM) inside GPU -->
+					<div style="position: absolute; left: 8px; top: 22px; width: 150px; height: 60px; background: #e74c3c; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+						<span style="color: white; font-weight: bold; font-size: 12px; text-align: center;">LLM Engine<br>(Generation LLM)</span>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- Node 2 (right - empty) -->
-		<div style="position: absolute; left: 360px; top: 45px; width: 280px; height: 170px; border: 2px dashed #666; border-radius: 10px; background: rgba(240,240,240,0.3);">
-			<span style="position: absolute; left: 10px; top: 5px; font-size: 14px; color: #555; font-weight: bold;">Node 2</span>
+		<div style="position: absolute; left: 440px; top: 54px; width: 370px; height: 220px; border: 2px dashed #666; border-radius: 10px; background: rgba(240,240,240,0.3);">
+			<span style="position: absolute; left: 12px; top: 6px; font-size: 16px; color: #555; font-weight: bold;">Node 2</span>
 
 			<!-- CPU boxes row -->
-			<div style="position: absolute; left: 10px; top: 25px; display: flex; gap: 8px;">
-				<div style="width: 125px; height: 50px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
-					<span style="position: absolute; left: 6px; top: 3px; font-size: 10px; color: #7f8c8d;">CPU</span>
+			<div style="position: absolute; left: 12px; top: 30px; display: flex; gap: 12px;">
+				<div style="width: 168px; height: 78px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 11px; color: #7f8c8d;">CPU</span>
 				</div>
-				<div style="width: 125px; height: 50px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
-					<span style="position: absolute; left: 6px; top: 3px; font-size: 10px; color: #7f8c8d;">CPU</span>
+				<div style="width: 168px; height: 78px; background: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 11px; color: #7f8c8d;">CPU</span>
 				</div>
 			</div>
 
 			<!-- GPU boxes row -->
-			<div style="position: absolute; left: 10px; top: 115px; display: flex; gap: 8px;">
-				<div style="width: 125px; height: 45px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-					<span style="color: #ecf0f1; font-weight: bold; font-size: 14px;">GPU 2</span>
+			<div style="position: absolute; left: 12px; top: 118px; display: flex; gap: 12px;">
+				<div style="width: 168px; height: 90px; background: #d5dbdb; border: 2px solid #95a5a6; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 13px; color: #555; font-weight: bold;">GPU 2</span>
 				</div>
-				<div style="width: 125px; height: 45px; background: #2c3e50; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-					<span style="color: #ecf0f1; font-weight: bold; font-size: 14px;">GPU 3</span>
+				<div style="width: 168px; height: 90px; background: #d5dbdb; border: 2px solid #95a5a6; border-radius: 6px; position: relative;">
+					<span style="position: absolute; left: 6px; top: 3px; font-size: 13px; color: #555; font-weight: bold;">GPU 3</span>
 				</div>
 			</div>
 		</div>
-
-		<!-- LLM Engine (Embedding Model) on GPU 0 -->
-		<div style="position: absolute; left: 80px; top: 125px; width: 125px; height: 35px; background: #e67e22; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-			<span style="color: white; font-weight: bold; font-size: 11px; text-align: center;">LLM Engine<br>(Embedding Model)</span>
-		</div>
-
-		<!-- LLM Engine (Generation LLM) on GPU 1 -->
-		<div style="position: absolute; left: 213px; top: 125px; width: 125px; height: 35px; background: #e74c3c; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-			<span style="color: white; font-weight: bold; font-size: 11px; text-align: center;">LLM Engine<br>(Generation LLM)</span>
-		</div>
 	</div>
 
-	<!-- Bottom Half: RAG Workflow Diagram (scaled down, static) -->
-	<div style="position: relative; width: 750px; height: 220px; margin: 20px auto 0;">
+	<!-- Bottom Half: RAG Workflow Diagram (static, colors matched) -->
+	<div style="position: relative; width: 860px; height: 180px; margin: 10px auto 0;">
 		<!-- User icon -->
-		<div style="position: absolute; left: 20px; top: 80px;">
+		<div style="position: absolute; left: 15px; top: 60px;">
 			<svg width="50" height="50" viewBox="0 0 24 24" fill="#666">
 				<circle cx="12" cy="8" r="4"/>
 				<path d="M12 14c-6 0-8 3-8 6v1h16v-1c0-3-2-6-8-6z"/>
 			</svg>
 		</div>
 
-		<!-- Arrow from User to Embedding Model with "prompt" label -->
-		<svg style="position: absolute; left: 70px; top: 55px; width: 90px; height: 70px;">
+		<!-- Arrow from User to Embedding Model with "Prompt" label -->
+		<svg style="position: absolute; left: 65px; top: 35px; width: 110px; height: 75px;">
 			<defs><marker id="arrow1-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
-			<line x1="8" y1="55" x2="75" y2="15" stroke="#666" stroke-width="2" marker-end="url(#arrow1-static)"/>
-			<text x="20" y="30" fill="#666" font-size="12" font-weight="bold">prompt</text>
+			<line x1="8" y1="55" x2="95" y2="18" stroke="#666" stroke-width="2" marker-end="url(#arrow1-static)"/>
+			<text x="8" y="72" fill="#666" font-size="14" font-weight="bold">Prompt</text>
 		</svg>
 
-		<!-- Embedding Model -->
-		<div style="position: absolute; left: 155px; top: 10px; background: #9b59b6; padding: 12px 18px; border-radius: 10px; color: white; font-weight: bold; font-size: 16px; text-align: center; box-shadow: 0 3px 5px rgba(0,0,0,0.1);">
+		<!-- Embedding Model (orange to match LLM Engine Embedding Model) -->
+		<div style="position: absolute; left: 170px; top: 0px; background: #e67e22; padding: 12px 18px; border-radius: 10px; color: white; font-weight: bold; font-size: 15px; text-align: center; box-shadow: 0 3px 5px rgba(0,0,0,0.1);">
 			Embedding<br>Model
 		</div>
 
-		<!-- Arrow from Embedding to Database with "embedding" label -->
-		<svg style="position: absolute; left: 275px; top: 25px; width: 100px; height: 40px;">
+		<!-- Arrow from Embedding to Database with "Embedding" label -->
+		<svg style="position: absolute; left: 295px; top: 15px; width: 110px; height: 45px;">
 			<defs><marker id="arrow2-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
-			<line x1="5" y1="20" x2="85" y2="20" stroke="#666" stroke-width="2" marker-end="url(#arrow2-static)"/>
-			<text x="15" y="14" fill="#666" font-size="12" font-weight="bold">embedding</text>
+			<line x1="5" y1="25" x2="95" y2="25" stroke="#666" stroke-width="2" marker-end="url(#arrow2-static)"/>
+			<text x="15" y="18" fill="#666" font-size="14" font-weight="bold">Embedding</text>
 		</svg>
 
 		<!-- Vector Database (cylinder) -->
-		<div style="position: absolute; left: 365px; top: 0px; text-align: center;">
-			<svg width="90" height="80" viewBox="0 0 70 70">
+		<div style="position: absolute; left: 400px; top: -10px; text-align: center;">
+			<svg width="80" height="75" viewBox="0 0 70 70">
 				<ellipse cx="35" cy="15" rx="25" ry="10" fill="#e67e22"/>
 				<rect x="10" y="15" width="50" height="40" fill="#e67e22"/>
 				<ellipse cx="35" cy="55" rx="25" ry="10" fill="#d35400"/>
 				<ellipse cx="35" cy="15" rx="25" ry="10" fill="none" stroke="#fff" stroke-width="1" opacity="0.3"/>
 			</svg>
-			<div style="font-size: 14px; color: #666; margin-top: 0px;">Vector Database</div>
+			<div style="font-size: 13px; color: #666; margin-top: -2px;">Vector Database</div>
 		</div>
 
-		<!-- Arrow from Database to LLM with "retrieved documents" label -->
-		<svg style="position: absolute; left: 450px; top: 40px; width: 140px; height: 100px;">
+		<!-- Arrow from Database to Generation LLM with "Retrieved Documents" label -->
+		<svg style="position: absolute; left: 480px; top: 25px; width: 150px; height: 95px;">
 			<defs><marker id="arrow3-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
-			<line x1="8" y1="8" x2="125" y2="80" stroke="#666" stroke-width="2" marker-end="url(#arrow3-static)"/>
-			<text x="50" y="30" fill="#666" font-size="12" font-weight="bold">retrieved</text>
-			<text x="50" y="44" fill="#666" font-size="12" font-weight="bold">documents</text>
+			<line x1="8" y1="8" x2="130" y2="75" stroke="#666" stroke-width="2" marker-end="url(#arrow3-static)"/>
+			<text x="55" y="22" fill="#666" font-size="14" font-weight="bold">Retrieved</text>
+			<text x="55" y="38" fill="#666" font-size="14" font-weight="bold">Documents</text>
 		</svg>
 
-		<!-- LLM -->
-		<div style="position: absolute; left: 580px; top: 115px; background: #e74c3c; padding: 18px 30px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px; box-shadow: 0 3px 5px rgba(0,0,0,0.1);">
-			LLM
+		<!-- Generation LLM (red to match LLM Engine Generation LLM) -->
+		<div style="position: absolute; left: 625px; top: 95px; background: #e74c3c; padding: 14px 20px; border-radius: 10px; color: white; font-weight: bold; font-size: 15px; text-align: center; box-shadow: 0 3px 5px rgba(0,0,0,0.1);">
+			Generation<br>LLM
 		</div>
 
-		<!-- Arrow from User directly to LLM with "prompt" label -->
-		<svg style="position: absolute; left: 70px; top: 115px; width: 510px; height: 40px;">
+		<!-- Arrow from User directly to Generation LLM with "Prompt" label -->
+		<svg style="position: absolute; left: 65px; top: 95px; width: 560px; height: 40px;">
 			<defs><marker id="arrow5-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
-			<line x1="8" y1="20" x2="495" y2="20" stroke="#666" stroke-width="2" marker-end="url(#arrow5-static)"/>
-			<text x="230" y="14" fill="#666" font-size="12" font-weight="bold">prompt</text>
+			<line x1="8" y1="22" x2="545" y2="22" stroke="#666" stroke-width="2" marker-end="url(#arrow5-static)"/>
+			<text x="260" y="16" fill="#666" font-size="14" font-weight="bold">Prompt</text>
 		</svg>
 
-		<!-- Arrow from LLM to Response with "response" label -->
-		<svg style="position: absolute; left: 680px; top: 125px; width: 70px; height: 40px;">
+		<!-- Arrow from Generation LLM to Response with "Response" label -->
+		<svg style="position: absolute; left: 735px; top: 105px; width: 90px; height: 40px;">
 			<defs><marker id="arrow6-static" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#666"/></marker></defs>
-			<line x1="5" y1="20" x2="55" y2="20" stroke="#666" stroke-width="2" marker-end="url(#arrow6-static)"/>
-			<text x="10" y="14" fill="#666" font-size="12" font-weight="bold">response</text>
+			<line x1="5" y1="22" x2="75" y2="22" stroke="#666" stroke-width="2" marker-end="url(#arrow6-static)"/>
+			<text x="15" y="16" fill="#666" font-size="14" font-weight="bold">Response</text>
 		</svg>
+	</div>
+
+	<!-- Bullet points -->
+	<div style="width: 860px; margin: 5px auto 0; padding-left: 50px;">
+		<ul style="font-size: 20px; color: #333; margin: 0; list-style-type: disc;">
+			<li>Lack of critical path awareness.</li>
+			<li>Lack of whole program awareness.</li>
+			<li>Lack of multi-workflow awareness.</li>
+		</ul>
 	</div>
 </section>
