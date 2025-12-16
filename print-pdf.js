@@ -36,21 +36,12 @@ const { PDFDocument } = require('pdf-lib');
 		// Create PDF document
 		const pdfDoc = await PDFDocument.create();
 
-		// Screenshot each slide and add to PDF
-		for (let i = 0; i < totalSlides; i++) {
-			// Navigate to slide
-			await page.evaluate((index) => {
-				Reveal.slide(index);
-			}, i);
-			await new Promise(r => setTimeout(r, 100)); // Wait for transition
-
-			// Take screenshot
+		// Helper to capture current state
+		async function captureCurrentState() {
 			const screenshot = await page.screenshot({
 				type: 'png',
 				clip: { x: 0, y: 0, width: slideWidth, height: slideHeight }
 			});
-
-			// Add page to PDF (convert px to points: 1px = 0.75pt at 96dpi)
 			const pngImage = await pdfDoc.embedPng(screenshot);
 			const pdfPage = pdfDoc.addPage([slideWidth, slideHeight]);
 			pdfPage.drawImage(pngImage, {
@@ -59,9 +50,40 @@ const { PDFDocument } = require('pdf-lib');
 				width: slideWidth,
 				height: slideHeight
 			});
-
-			console.log(`Captured slide ${i + 1}/${totalSlides}`);
 		}
+
+		let pageCount = 0;
+
+		// Screenshot each slide and its fragments
+		for (let i = 0; i < totalSlides; i++) {
+			// Navigate to slide (with all fragments hidden)
+			await page.evaluate((index) => {
+				Reveal.slide(index);
+				// Reset to show no fragments
+				Reveal.navigateFragment(-1);
+			}, i);
+			await new Promise(r => setTimeout(r, 100));
+
+			// Capture initial state (no fragments shown)
+			await captureCurrentState();
+			pageCount++;
+			console.log(`Captured slide ${i + 1}/${totalSlides} (base)`);
+
+			// Step through each fragment
+			let hasMoreFragments = await page.evaluate(() => Reveal.availableFragments().next);
+			while (hasMoreFragments) {
+				await page.evaluate(() => Reveal.nextFragment());
+				await new Promise(r => setTimeout(r, 50));
+
+				await captureCurrentState();
+				pageCount++;
+				console.log(`Captured slide ${i + 1}/${totalSlides} (fragment)`);
+
+				hasMoreFragments = await page.evaluate(() => Reveal.availableFragments().next);
+			}
+		}
+
+		console.log(`Total pages: ${pageCount}`);
 
 		// Save PDF
 		const pdfBytes = await pdfDoc.save();
