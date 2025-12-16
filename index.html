@@ -19,17 +19,17 @@
 			font-size: 24px;
 		}
 
-		/* PDF export: retain original slide size */
-		@page {
-			size: 1920px 1080px;
-			margin: 0;
+		/* PDF export: remove all margins/padding so slides fill the page */
+		html.reveal-print .reveal .slides section {
+			margin: 0 !important;
+			padding: 0 !important;
+			top: 0 !important;
+			left: 0 !important;
 		}
 
-		@media print {
-			html.reveal-print .reveal .slides .pdf-page {
-				width: 1920px !important;
-				height: 1080px !important;
-			}
+		html.reveal-print .reveal .slides .pdf-page {
+			margin: 0 !important;
+			padding: 0 !important;
 		}
 	</style>
 </head>
@@ -42,7 +42,7 @@
 				<script type="text/template">
 					## Semantic-aware LLM-Application Scheduling
 
-					#### Otto Whit
+					#### Otto Whitee3
 
 					#### December 10, 2025
 				</script>
@@ -93,6 +93,7 @@
 				transition: 'none',
 				height: 1080,
 				width: 1920,
+				margin: 0,
 				progress: false,
 				center: false,
 				autoAnimateEasing: 'none',

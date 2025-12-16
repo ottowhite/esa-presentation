@@ -107,6 +107,7 @@
   },
   "dependencies": {
     "decktape": "^3.15.0",
+    "pdf-lib": "^1.17.1",
     "reveal.js-mermaid-plugin": "^11.6.0"
   }
 }
