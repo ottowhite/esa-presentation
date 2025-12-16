@@ -54,32 +54,51 @@ const { PDFDocument } = require('pdf-lib');
 
 		let pageCount = 0;
 
+		// Get fragment counts for each slide
+		const fragmentCounts = await page.evaluate(() => {
+			return Reveal.getSlides().map(slide => {
+				const fragments = slide.querySelectorAll('.fragment');
+				// Get unique fragment indices (fragments can share indices for simultaneous reveal)
+				const indices = new Set();
+				fragments.forEach(f => {
+					const index = f.getAttribute('data-fragment-index');
+					indices.add(index !== null ? parseInt(index) : fragments.length);
+				});
+				return indices.size || (fragments.length > 0 ? fragments.length : 0);
+			});
+		});
+
 		// Screenshot each slide and its fragments
 		for (let i = 0; i < totalSlides; i++) {
-			// Navigate to slide (with all fragments hidden)
+			const fragmentCount = fragmentCounts[i];
+
+			// Navigate to slide with all fragments hidden
 			await page.evaluate((index) => {
 				Reveal.slide(index);
-				// Reset to show no fragments
-				Reveal.navigateFragment(-1);
 			}, i);
 			await new Promise(r => setTimeout(r, 100));
 
-			// Capture initial state (no fragments shown)
+			// Hide all fragments initially
+			await page.evaluate(() => {
+				document.querySelectorAll('.present .fragment').forEach(f => {
+					f.classList.remove('visible', 'current-fragment');
+				});
+			});
+			await new Promise(r => setTimeout(r, 50));
+
+			// Capture base state (no fragments)
 			await captureCurrentState();
 			pageCount++;
-			console.log(`Captured slide ${i + 1}/${totalSlides} (base)`);
+			console.log(`Captured slide ${i + 1}/${totalSlides} (base, ${fragmentCount} fragments)`);
 
 			// Step through each fragment
-			let hasMoreFragments = await page.evaluate(() => Reveal.availableFragments().next);
-			while (hasMoreFragments) {
+			for (let f = 0; f < fragmentCount; f++) {
 				await page.evaluate(() => Reveal.nextFragment());
-				await new Promise(r => setTimeout(r, 50));
+				await new Promise(r => setTimeout(r, 250)); // Wait for animation
 
 				await captureCurrentState();
 				pageCount++;
-				console.log(`Captured slide ${i + 1}/${totalSlides} (fragment)`);
-
-				hasMoreFragments = await page.evaluate(() => Reveal.availableFragments().next);
+				console.log(`Captured slide ${i + 1}/${totalSlides} (fragment ${f + 1}/${fragmentCount})`);
 			}
 		}
 
