@@ -19,6 +19,7 @@ const eslint = require('gulp-eslint')
 const minify = require('gulp-clean-css')
 const connect = require('gulp-connect')
 const autoprefixer = require('gulp-autoprefixer')
+const { spawn } = require('child_process')
 
 const root = yargs.argv.root || '.'
 const port = yargs.argv.port || 8000
@@ -296,6 +297,28 @@ gulp.task('package', gulp.series(async () => {
 gulp.task('reload', () => gulp.src(['index.html'])
     .pipe(connect.reload()));
 
+gulp.task('print-pdf', (done) => {
+    // Small delay to ensure the server has reloaded content
+    setTimeout(() => {
+        const outputPath = yargs.argv.pdf || 'exported.pdf';
+
+        console.log(`Exporting PDF to ${outputPath}...`);
+
+        const child = spawn('node', ['print-pdf.js', outputPath], {
+            stdio: 'inherit',
+            cwd: root === '.' ? process.cwd() : root,
+            env: { ...process.env, REVEAL_HOST: host, REVEAL_PORT: port }
+        });
+
+        child.on('close', (code) => {
+            if (code !== 0) {
+                console.error(`PDF export failed with code ${code}`);
+            }
+            done();
+        });
+    }, 1000);
+});
+
 gulp.task('serve', () => {
 
     connect.server({
@@ -310,21 +333,21 @@ gulp.task('serve', () => {
         slidesRoot + '**/*.html',
         slidesRoot + '**/*.md',
         `!${slidesRoot}**/node_modules/**`, // ignore node_modules
-    ], gulp.series('reload'))
+    ], gulp.series('reload', 'print-pdf'))
 
-    gulp.watch(['js/**'], gulp.series('js', 'reload', 'eslint'))
+    gulp.watch(['js/**'], gulp.series('js', 'reload', 'print-pdf', 'eslint'))
 
-    gulp.watch(['plugin/**/plugin.js', 'plugin/**/*.html'], gulp.series('plugins', 'reload'))
+    gulp.watch(['plugin/**/plugin.js', 'plugin/**/*.html'], gulp.series('plugins', 'reload', 'print-pdf'))
 
     gulp.watch([
         'css/theme/source/**/*.{sass,scss}',
         'css/theme/template/*.{sass,scss}',
-    ], gulp.series('css-themes', 'reload'))
+    ], gulp.series('css-themes', 'reload', 'print-pdf'))
 
     gulp.watch([
         'css/*.scss',
         'css/print/*.{sass,scss,css}'
-    ], gulp.series('css-core', 'reload'))
+    ], gulp.series('css-core', 'reload', 'print-pdf'))
 
     gulp.watch(['test/*.html'], gulp.series('test'))
 
