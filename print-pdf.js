@@ -16,7 +16,14 @@ const puppeteer = require('puppeteer');
 		await page.goto(url, { waitUntil: 'networkidle0' });
 
 		console.log(`Generating PDF to ${outputPath}...`);
-		await page.pdf({ path: outputPath, format: 'A4' });
+		// Use 2560x1440 CSS pixels to get 1920x1080 PDF points (96/72 DPI conversion)
+		await page.pdf({
+			path: outputPath,
+			width: '2560px',
+			height: '1440px',
+			printBackground: true,
+			margin: { top: 0, right: 0, bottom: 0, left: 0 }
+		});
 
 		await browser.close();
 		console.log('Done.');
