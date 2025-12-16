@@ -36,7 +36,7 @@
 			</section>
 
 			<!-- External slides: just list the filename, loaded in order -->
-			<section data-external="introduction.html"></section>
+			<!-- <section data-external="introduction.html"></section> -->
 			<section data-external="easy-hard.html"></section>
 			<section data-external="layered-architecture.html"></section>
 			<section data-external="related-work.html"></section>
@@ -74,8 +74,14 @@
 			// Initialize Reveal.js after all content is loaded
 			Reveal.initialize({
 				hash: true,
-				slideNumber: true,
+				slideNumber: false,
 				controls: false,
+				autoAnimate: false,
+				transition: 'none',
+				progress: false,
+				center: false,
+				autoAnimateEasing: 'none',
+				pdfMaxPagesPerSlide: 1,
 
 				// Mermaid diagram configuration
 				mermaid: {
