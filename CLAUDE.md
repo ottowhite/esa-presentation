@@ -4,7 +4,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A reveal.js presentation. Edit `index.html` to create slides. Run `npm start` to preview with live reload on port 8000.
+A reveal.js presentation. Run `npm start` to preview with live reload on port 8000.
+
+## Adding/Editing Slides
+
+Slides are stored as individual HTML files in the `slides/` directory. Which slides to include and their order is controlled in `index.html`.
+
+### To add a new slide:
+1. Create a new file in `slides/`: `slides/my-slide.html`
+2. Wrap content in a `<section>` tag
+3. Add it to `index.html` in the slides div: `<section data-external="my-slide.html"></section>`
+
+### Example slide file (`slides/example.html`):
+```html
+<section>
+  <h3>My Slide Title</h3>
+  <ul>
+    <li class="fragment">Point 1</li>
+    <li class="fragment">Point 2</li>
+  </ul>
+</section>
+```
+
+### In index.html:
+```html
+<div class="slides">
+  <section>Title slide (inline)</section>
+
+  <!-- External slides: just list the filename -->
+  <section data-external="introduction.html"></section>
+  <section data-external="my-slide.html"></section>
+  <section data-external="conclusion.html"></section>
+</div>
+```
+
+### Reordering/removing slides:
+Edit `index.html` - reorder or remove the `<section data-external="...">` lines
 
 ## Previewing Your Work
 

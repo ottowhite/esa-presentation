@@ -1,0 +1,20 @@
+<section>
+	<h3>Critical-path Aware Parallelism</h3>
+	<ul style="font-size: 24px; margin-bottom: 10px;">
+		<li class="fragment">K8S default behavior:
+			<ul style="font-size: 20px; margin-top: 5px;">
+				<li class="fragment">One model per GPU</li>
+				<li class="fragment">Reactively scales based on queue sizes</li>
+				<li class="fragment">Optimizes throughput, no latency awareness</li>
+				<li class="fragment">Only explores the data parallel dimension</li>
+			</ul>
+		</li>
+		<li class="fragment">We can do better</li>
+	</ul>
+	<img src="assets/data/plots/1_rag_time_distributions.png" style="max-height: 350px;" class="fragment">
+	<ul style="font-size: 24px; margin-top: 10px;">
+		<li class="fragment">LLM latency 100x embedding latency</li>
+		<li class="fragment">LLM is the critical path</li>
+		<li class="fragment">TP2 halves RAG application latency</li>
+	</ul>
+</section>
