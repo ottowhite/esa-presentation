@@ -18,6 +18,19 @@
 		.reveal .slide-number {
 			font-size: 24px;
 		}
+
+		/* PDF export: retain original slide size */
+		@page {
+			size: 1920px 1080px;
+			margin: 0;
+		}
+
+		@media print {
+			html.reveal-print .reveal .slides .pdf-page {
+				width: 1920px !important;
+				height: 1080px !important;
+			}
+		}
 	</style>
 </head>
 
@@ -29,7 +42,7 @@
 				<script type="text/template">
 					## Semantic-aware LLM-Application Scheduling
 
-					#### Otto White
+					#### Otto Whit
 
 					#### December 10, 2025
 				</script>
