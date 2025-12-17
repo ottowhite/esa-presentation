@@ -3,21 +3,23 @@
   <div class="mermaid">
     <pre>
 sequenceDiagram
+    participant IdP as Identity Provider&lt;br/&gt;(Imperial/Google)
     participant User
-    participant IdP as Identity Provider<br>(Imperial or Google)
-    participant Gateway as OPKSSH Gateway<br>(emu3)
+    participant Gateway as OPKSSH Gateway&lt;br/&gt;(emu3)
     participant kea01
-    participant kea02
+    participant kea02 as kea02&lt;br/&gt;(Target machine)
     participant kea03
 
     rect rgb(230, 245, 255)
     User->>IdP: opkssh login
-    IdP-->>User: ephemeral private key
+    IdP-->>User: ephemeral private key for gateway
     end
 
+    User->>User: Ensure all keys in SSH Agent:&lt;br/&gt;2 from OPKSSH, 1 for the target machine
+
     rect rgb(230, 255, 230)
-    User->>Gateway: SSH to Gateway
-    Gateway->>kea02: SSH to machine
+    User->>Gateway: SSH to gateway&lt;br/&gt;(with ephemeral private key)
+    Gateway->>kea02: SSH to machine&lt;br/&gt;(with normal private key)
     end
     </pre>
   </div>
