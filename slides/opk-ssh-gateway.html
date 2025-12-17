@@ -1,36 +1,23 @@
 <section>
-  <style>
-    .mermaid .note {
-      fill: transparent !important;
-      stroke: transparent !important;
-    }
-    .mermaid .noteText {
-      font-size: 12px !important;
-      font-style: italic !important;
-    }
-  </style>
   <h3>SSH Access via OPKSSH Gateway</h3>
   <div class="mermaid">
     <pre>
 sequenceDiagram
     participant User
     participant IdP as Identity Provider<br>(Imperial or Google)
-    participant Gateway as OPKSSH Gateway [emu3]
+    participant Gateway as OPKSSH Gateway<br>(emu3)
     participant kea01
     participant kea02
     participant kea03
 
     rect rgb(230, 245, 255)
-    Note left of User: Authentication
     User->>IdP: opkssh login
     IdP-->>User: ephemeral private key
     end
 
     rect rgb(230, 255, 230)
-    Note left of User: SSH Connection
-    User->>Gateway: SSH ProxyJump to kea02
-    Gateway->>kea02: Forward SSH
-    kea02-->>User: Session Established
+    User->>Gateway: SSH to Gateway
+    Gateway->>kea02: SSH to machine
     end
     </pre>
   </div>
