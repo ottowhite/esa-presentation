@@ -1,4 +1,14 @@
 <section>
+  <style>
+    .mermaid .note {
+      fill: transparent !important;
+      stroke: transparent !important;
+    }
+    .mermaid .noteText {
+      font-size: 12px !important;
+      font-style: italic !important;
+    }
+  </style>
   <h3>SSH Access via OPKSSH Gateway</h3>
   <div class="mermaid">
     <pre>
@@ -11,13 +21,13 @@ sequenceDiagram
     participant kea03
 
     rect rgb(230, 245, 255)
-    Note over User,IdP: Authentication
+    Note left of User: Authentication
     User->>IdP: opkssh login
     IdP-->>User: ephemeral private key
     end
 
     rect rgb(230, 255, 230)
-    Note over User,kea02: SSH Connection
+    Note left of User: SSH Connection
     User->>Gateway: SSH ProxyJump to kea02
     Gateway->>kea02: Forward SSH
     kea02-->>User: Session Established
