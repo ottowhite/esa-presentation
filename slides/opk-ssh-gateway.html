@@ -1,27 +1,27 @@
 <section>
-  <h3>SSH Access via OPK Gateway</h3>
+  <h3>SSH Access via OPKSSH Gateway</h3>
   <div class="mermaid">
     <pre>
 sequenceDiagram
     participant User
-    participant Gateway as OPK SSH Gateway
-    participant A as Machine A
-    participant B as Machine B
-    participant C as Machine C
+    participant IdP as Identity Provider<br>(Imperial or Google)
+    participant Gateway as OPKSSH Gateway [emu3]
+    participant kea01
+    participant kea02
+    participant kea03
 
-    User->>Gateway: SSH Connection Request
-    Gateway->>Gateway: Authenticate & Authorize
-    alt Target: Machine A
-        Gateway->>A: Forward SSH Session
-        A-->>Gateway: Session Established
-    else Target: Machine B
-        Gateway->>B: Forward SSH Session
-        B-->>Gateway: Session Established
-    else Target: Machine C
-        Gateway->>C: Forward SSH Session
-        C-->>Gateway: Session Established
+    rect rgb(230, 245, 255)
+    Note over User,IdP: Authentication
+    User->>IdP: opkssh login
+    IdP-->>User: ephemeral private key
     end
-    Gateway-->>User: SSH Session Active
+
+    rect rgb(230, 255, 230)
+    Note over User,kea02: SSH Connection
+    User->>Gateway: SSH ProxyJump to kea02
+    Gateway->>kea02: Forward SSH
+    kea02-->>User: Session Established
+    end
     </pre>
   </div>
 </section>
