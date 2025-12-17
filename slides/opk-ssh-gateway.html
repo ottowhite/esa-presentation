@@ -1,0 +1,27 @@
+<section>
+  <h3>SSH Access via OPK Gateway</h3>
+  <div class="mermaid">
+    <pre>
+sequenceDiagram
+    participant User
+    participant Gateway as OPK SSH Gateway
+    participant A as Machine A
+    participant B as Machine B
+    participant C as Machine C
+
+    User->>Gateway: SSH Connection Request
+    Gateway->>Gateway: Authenticate & Authorize
+    alt Target: Machine A
+        Gateway->>A: Forward SSH Session
+        A-->>Gateway: Session Established
+    else Target: Machine B
+        Gateway->>B: Forward SSH Session
+        B-->>Gateway: Session Established
+    else Target: Machine C
+        Gateway->>C: Forward SSH Session
+        C-->>Gateway: Session Established
+    end
+    Gateway-->>User: SSH Session Active
+    </pre>
+  </div>
+</section>
